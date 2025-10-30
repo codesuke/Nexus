@@ -1,15 +1,16 @@
 import type { Metadata } from "next";
-import { DM_Sans} from "next/font/google";
+import { DM_Sans } from "next/font/google";
 import "./globals.css";
-import Providers from "./provider";
+import Providers from "./providers";
+import { ClerkProvider } from "@clerk/nextjs";
+import { Toaster } from "sonner";
+import { Suspense } from "react";
 
 const dmSans = DM_Sans({
   subsets: ["latin"],
   display: "swap",
   variable: "--font-dm-sans",
 });
-
-
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -22,12 +23,17 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body
-        className={`${dmSans.variable} antialiased`}
-      >
-        <Providers>{children}</Providers>
-      </body>
-    </html>
+    <ClerkProvider>
+      <html lang="en">
+        <body className={`${dmSans.className}`}>
+          <Providers>
+            <Suspense fallback={null}>
+              <div className="root-layout">{children}</div>
+            </Suspense>
+            <Toaster richColors closeButton />
+          </Providers>
+        </body>
+      </html>
+    </ClerkProvider>
   );
 }
