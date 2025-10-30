@@ -1,10 +1,8 @@
 import { Request, Response } from "express";
 import Course from "../models/courseModel";
-import AWS from "aws-sdk";
 import { v4 as uuidv4 } from "uuid";
 import { getAuth } from "@clerk/express";
-
-const s3 = new AWS.S3();
+import { generateUploadSignature } from "../utils/cloudinary";
 
 export const listCourses = async (
   req: Request,
@@ -179,32 +177,24 @@ export const getUploadVideoUrl = async (
   req: Request,
   res: Response
 ): Promise<void> => {
-  const { fileName, fileType } = req.body;
-
-  if (!fileName || !fileType) {
-    res.status(400).json({ message: "File name and type are required" });
-    return;
-  }
+  const { courseId, sectionId, chapterId } = req.params;
 
   try {
-    const uniqueId = uuidv4();
-    const s3Key = `videos/${uniqueId}/${fileName}`;
-
-    const s3Params = {
-      Bucket: process.env.S3_BUCKET_NAME || "",
-      Key: s3Key,
-      Expires: 60,
-      ContentType: fileType,
-    };
-
-    const uploadUrl = s3.getSignedUrl("putObject", s3Params);
-    const videoUrl = `${process.env.CLOUDFRONT_DOMAIN}/videos/${uniqueId}/${fileName}`;
+    // Generate folder path for organized storage
+    const folder = `nexus-lms/courses/${courseId}/sections/${sectionId}/chapters/${chapterId}`;
+    
+    // Generate Cloudinary upload signature and parameters
+    const uploadParams = generateUploadSignature(folder);
 
     res.json({
-      message: "Upload URL generated successfully",
-      data: { uploadUrl, videoUrl },
+      message: "Upload parameters generated successfully (Cloudinary)",
+      data: uploadParams,
     });
   } catch (error) {
-    res.status(500).json({ message: "Error generating upload URL", error });
+    console.error("Error generating Cloudinary upload params:", error);
+    res.status(500).json({ 
+      message: "Error generating upload parameters", 
+      error 
+    });
   }
 };

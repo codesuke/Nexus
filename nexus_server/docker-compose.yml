@@ -1,0 +1,36 @@
+version: '3.8'
+
+services:
+  # DynamoDB Local for development/demo
+  dynamodb-local:
+    image: amazon/dynamodb-local:latest
+    container_name: nexus-dynamodb-local
+    ports:
+      - "8000:8000"
+    command: "-jar DynamoDBLocal.jar -sharedDb -dbPath ./data"
+    volumes:
+      - dynamodb-data:/home/dynamodblocal/data
+    networks:
+      - nexus-network
+
+  # Express backend server
+  backend:
+    build: .
+    container_name: nexus-backend
+    ports:
+      - "8001:8001"
+    environment:
+      - NODE_ENV=production
+      - PORT=8001
+      - DYNAMODB_ENDPOINT=http://dynamodb-local:8000
+    depends_on:
+      - dynamodb-local
+    networks:
+      - nexus-network
+
+volumes:
+  dynamodb-data:
+
+networks:
+  nexus-network:
+    driver: bridge

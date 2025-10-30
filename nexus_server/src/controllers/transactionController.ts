@@ -1,20 +1,12 @@
-// import Stripe from "stripe";
+// Demo payment system - No real payment processing
 import dotenv from "dotenv";
 import { Request, Response } from "express";
+import { v4 as uuidv4 } from "uuid";
 import Course from "../models/courseModel";
 import Transaction from "../models/transactionModel";
 import UserCourseProgress from "../models/userCourseProgressModel";
 
 dotenv.config();
-
-// STRIPE DISABLED - Using dummy implementation
-// if (!process.env.STRIPE_SECRET_KEY) {
-//   throw new Error(
-//     "STRIPE_SECRET_KEY os required but was not found in env variables"
-//   );
-// }
-
-// const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 
 export const listTransactions = async (
   req: Request,
@@ -36,7 +28,7 @@ export const listTransactions = async (
   }
 };
 
-export const createStripePaymentIntent = async (
+export const createDemoPaymentIntent = async (
   req: Request,
   res: Response
 ): Promise<void> => {
@@ -47,29 +39,22 @@ export const createStripePaymentIntent = async (
   }
 
   try {
-    // STRIPE DISABLED - Using dummy payment intent
-    // const paymentIntent = await stripe.paymentIntents.create({
-    //   amount,
-    //   currency: "usd",
-    //   automatic_payment_methods: {
-    //     enabled: true,
-    //     allow_redirects: "never",
-    //   },
-    // });
-
-    // Dummy payment intent response
-    const dummyClientSecret = `pi_dummy_${Date.now()}_secret_${Math.random().toString(36).substring(7)}`;
+    // Generate a demo payment intent ID
+    const demoPaymentIntentId = `pi_demo_${uuidv4()}`;
+    const demoClientSecret = `${demoPaymentIntentId}_secret_${Math.random().toString(36).substring(7)}`;
 
     res.json({
-      message: "Payment intent created (DUMMY MODE - No real charge)",
+      message: "✅ Demo payment intent created - No real charges will be made",
       data: {
-        clientSecret: dummyClientSecret,
+        clientSecret: demoClientSecret,
+        transactionId: demoPaymentIntentId, // Use transactionId instead of paymentIntentId
+        amount,
       },
     });
   } catch (error) {
     res
       .status(500)
-      .json({ message: "Error creating stripe payment intent", error });
+      .json({ message: "Error creating demo payment intent", error });
   }
 };
 
@@ -80,21 +65,47 @@ export const createTransaction = async (
   const { userId, courseId, transactionId, amount, paymentProvider } = req.body;
 
   try {
-    // 1. get course info
-    const course = await Course.get(courseId);
+    // 1. Validate required fields
+    if (!userId || !courseId || !amount) {
+      res.status(400).json({ 
+        message: "Missing required fields: userId, courseId, amount" 
+      });
+      return;
+    }
 
-    // 2. create transaction record
+    // 2. Get course info
+    const course = await Course.get(courseId);
+    if (!course) {
+      res.status(404).json({ message: "Course not found" });
+      return;
+    }
+
+    // 3. Check if user is already enrolled
+    const existingEnrollment = course.enrollments?.find(
+      (enrollment: any) => enrollment.userId === userId
+    );
+    if (existingEnrollment) {
+      res.status(400).json({ 
+        message: "User is already enrolled in this course" 
+      });
+      return;
+    }
+
+    // 4. Generate transaction ID if not provided (for demo payments)
+    const finalTransactionId = transactionId || `DEMO_TXN_${uuidv4()}`;
+
+    // 5. Create transaction record
     const newTransaction = new Transaction({
       dateTime: new Date().toISOString(),
       userId,
       courseId,
-      transactionId,
+      transactionId: finalTransactionId,
       amount,
-      paymentProvider,
+      paymentProvider: paymentProvider || "demo",
     });
     await newTransaction.save();
 
-    // 3. create initial course progress
+    // 6. Create initial course progress
     const initialProgress = new UserCourseProgress({
       userId,
       courseId,
@@ -111,7 +122,7 @@ export const createTransaction = async (
     });
     await initialProgress.save();
 
-    // 4. add enrollment to relevant course
+    // 7. Add enrollment to course
     await Course.update(
       { courseId },
       {
@@ -122,13 +133,16 @@ export const createTransaction = async (
     );
 
     res.json({
-      message: "Purchased Course successfully",
+      message: paymentProvider === "demo" 
+        ? "✅ Demo purchase successful - Enrolled in course!" 
+        : "Purchased course successfully",
       data: {
         transaction: newTransaction,
         courseProgress: initialProgress,
       },
     });
   } catch (error) {
+    console.error("Transaction creation error:", error);
     res
       .status(500)
       .json({ message: "Error creating transaction and enrollment", error });

@@ -17,6 +17,7 @@ import courseRoutes from "./routes/courseRoutes";
 import userClerkRoutes from "./routes/userClerkRoutes";
 import transactionRoutes from "./routes/transactionRoutes";
 import userCourseProgressRoutes from "./routes/userCourseProgressRoutes";
+import adminRoutes from "./routes/adminRoutes";
 
 /* CONFIGURATIONS */
 dotenv.config();
@@ -50,8 +51,11 @@ app.get("/", (req, res) => {
 
 app.use("/courses", courseRoutes);
 app.use("/users/clerk", requireAuth(), userClerkRoutes);
-app.use("/transactions", requireAuth(), transactionRoutes);
+// Transaction routes: payment-intent is public for demo/guest users, others require auth
+app.use("/transactions", transactionRoutes);
 app.use("/users/course-progress", requireAuth(), userCourseProgressRoutes);
+// Admin routes: No auth for Railway console access (add API key auth in production!)
+app.use("/admin", adminRoutes);
 
 /* SERVER */
 const port = process.env.PORT || 3000;
