@@ -1,310 +1,620 @@
+<div align="center">
+
 # 🎓 Nexus LMS
-An Interactive Learning Management System Platform
 
-> **Live Demo:** [Frontend on Vercel](#) | **Backend:** Ready for Railway deployment  
-> **Status:** ✅ Production Ready | **Cost:** $0/month (Free Tier)
+### A Modern, Full-Stack Learning Management System
 
----
+[![Live Demo](https://img.shields.io/badge/demo-live-success?style=for-the-badge)](https://nexus-beta-two.vercel.app/)
+[![Backend](https://img.shields.io/badge/api-deployed-blue?style=for-the-badge)](https://nexus-server-0pm2.onrender.com)
+[![License](https://img.shields.io/badge/license-MIT-purple?style=for-the-badge)](LICENSE)
 
-## 🚀 Features
+**Built for students, teachers, and lifelong learners**
 
-### For Students:
-- 📚 Browse and enroll in courses
-- 🎥 Watch video lessons
-- 📝 Track learning progress
-- 💳 Demo payment system (portfolio-ready)
+[✨ Features](#-features) • [🚀 Live Demo](#-live-demo) • [💻 Tech Stack](#-tech-stack) • [📦 Getting Started](#-getting-started)
 
-### For Teachers:
-- 📖 Create and manage courses
-- 🎬 Upload video content via Cloudinary
-- 📊 Track student enrollments
-- 💰 View transaction history
+</div>
 
 ---
 
-## 🛠️ Tech Stack
+## 🌟 Overview
 
-### Frontend (Next.js)
-- **Framework:** Next.js 16 with App Router
-- **Language:** TypeScript
-- **UI:** Tailwind CSS + shadcn/ui components
-- **Auth:** Clerk Authentication
-- **State:** Redux Toolkit (RTK Query)
-- **Deployment:** Vercel
+Nexus is a production-ready Learning Management System built with modern web technologies. It enables students to browse and enroll in courses, track their progress, and learn at their own pace, while empowering teachers to create engaging educational content with video lessons.
 
-### Backend (Express)
-- **Framework:** Express.js 5
-- **Language:** TypeScript
-- **Database:** DynamoDB (Dynamoose ORM)
-- **Storage:** Cloudinary (Video hosting)
-- **Payments:** Demo system (upgradeable to Stripe/Razorpay)
-- **Deployment:** Railway with Docker
+**🎯 Perfect for:**
+- Educational institutions
+- Online course creators
+- Corporate training programs
+- Portfolio projects
 
 ---
 
-## 📦 Project Structure
+## 🚀 Live Demo
+
+| Platform | URL | Status |
+|----------|-----|--------|
+| **Frontend** | [nexus-beta-two.vercel.app](https://nexus-beta-two.vercel.app/) | 🟢 Live |
+| **Backend API** | [nexus-server-0pm2.onrender.com](https://nexus-server-0pm2.onrender.com) | 🟢 Live |
+
+> **Note:** Backend on free tier spins down after 15 minutes of inactivity (30s cold start)
+
+---
+
+## ✨ Features
+
+### 👨‍🎓 For Students
+- 📚 **Course Discovery** - Browse extensive course catalog with search and filters
+- 🎥 **Video Learning** - High-quality video lessons powered by Cloudinary
+- � **Progress Tracking** - Monitor completion status across chapters and sections
+- 💳 **Easy Enrollment** - Seamless course registration with demo payment system
+- 🔖 **Learning Dashboard** - Personalized view of enrolled courses and progress
+
+### 👨‍🏫 For Teachers
+- � **Course Creation** - Rich course builder with chapters and sections
+- 🎬 **Video Upload** - Direct integration with Cloudinary for video hosting
+- � **Student Management** - View enrollments and track student progress
+- 💰 **Revenue Tracking** - Monitor course sales and transaction history
+- ✏️ **Content Updates** - Edit and refine course materials anytime
+
+### 🔐 For Everyone
+- 🚀 **Fast & Responsive** - Optimized performance with Next.js 15
+- 🔒 **Secure Authentication** - Powered by Clerk with OAuth support
+- 📱 **Mobile Friendly** - Fully responsive design works on all devices
+- 🎨 **Modern UI** - Beautiful interface built with Tailwind CSS + shadcn/ui
+
+---
+
+## 💻 Tech Stack
+
+### **Frontend** ([Vercel](https://vercel.com))
+| Technology | Version | Purpose |
+|------------|---------|---------|
+| **Next.js** | `15.0.4` | React framework with App Router |
+| **TypeScript** | `^5` | Type-safe development |
+| **Tailwind CSS** | `^3.4.1` | Utility-first styling |
+| **shadcn/ui** | Latest | Beautiful UI components |
+| **Redux Toolkit** | `^2.5.0` | State management + RTK Query |
+| **Clerk** | `^6.11.0` | Authentication & user management |
+
+### **Backend** ([Render](https://render.com))
+| Technology | Version | Purpose |
+|------------|---------|---------|
+| **Express** | `^5.1.0` | Node.js web framework |
+| **TypeScript** | `^5.9.3` | Type safety |
+| **MongoDB Atlas** | Cloud | NoSQL database (512MB free tier) |
+| **Mongoose** | `^8.19.2` | MongoDB ODM |
+| **Cloudinary** | `^2.5.1` | Video & image hosting |
+| **Clerk/Express** | `^1.7.43` | Server-side auth middleware |
+
+### **Infrastructure**
+- **Hosting:** Vercel (Frontend) + Render (Backend)
+- **Database:** MongoDB Atlas M0 (Free Cluster)
+- **Storage:** Cloudinary (25GB free)
+- **Auth:** Clerk (10K MAU free)
+- **Cost:** **$0/month** 🎉
+
+---
+
+## 📦 Project Architecture
 
 ```
 Nexus/
-├── nexus_client/          # Next.js frontend
-│   ├── app/               # App Router pages
-│   ├── components/        # React components
-│   ├── state/            # Redux store & RTK Query
-│   └── types/            # TypeScript definitions
-│
-├── nexus_server/          # Express backend
+├── nexus_client/              # Frontend Application (Vercel)
 │   ├── src/
-│   │   ├── controllers/  # Route handlers
-│   │   ├── models/       # DynamoDB models
-│   │   ├── routes/       # API routes
-│   │   ├── utils/        # Helpers (Cloudinary, etc.)
-│   │   └── seed/         # Database seeding
-│   ├── Dockerfile        # Container config
-│   ├── docker-compose.yml # Local development
-│   └── railway.json      # Railway deployment
+│   │   ├── app/              # Next.js App Router pages
+│   │   │   ├── (auth)/       # Authentication pages
+│   │   │   ├── (dashboard)/  # Student & Teacher dashboards
+│   │   │   └── (nondashboard)/ # Public pages
+│   │   ├── components/       # Reusable React components
+│   │   │   ├── ui/          # shadcn/ui primitives
+│   │   │   └── *.tsx        # Custom components
+│   │   ├── state/           # Redux store & API slices
+│   │   ├── hooks/           # Custom React hooks
+│   │   ├── lib/             # Utilities & helpers
+│   │   └── types/           # TypeScript type definitions
+│   └── package.json
 │
-└── IMPLEMENTATION_SUMMARY.md  # Full implementation details
+├── nexus_server/              # Backend API (Render)
+│   ├── src/
+│   │   ├── controllers/      # Route handlers & business logic
+│   │   ├── models/          # Mongoose schemas (MongoDB)
+│   │   │   ├── courseModel.mongoose.ts
+│   │   │   ├── transactionModel.mongoose.ts
+│   │   │   └── userCourseProgressModel.mongoose.ts
+│   │   ├── routes/          # Express route definitions
+│   │   ├── config/          # Database & service configs
+│   │   ├── seed/            # Database seeding scripts
+│   │   └── index.ts         # Server entry point
+│   ├── Dockerfile           # Docker containerization
+│   └── package.json
+│
+└── Guides/                    # Documentation & deployment guides
 ```
 
 ---
 
-## ⚡ Quick Start
+## 📦 Getting Started
 
-### 1️⃣ Clone Repository
+### Prerequisites
+- **Node.js** 20+ and npm
+- **MongoDB Atlas** account (free)
+- **Clerk** account for authentication
+- **Cloudinary** account for video storage
+
+### 🔧 Local Development Setup
+
+#### 1️⃣ Clone the Repository
 ```bash
 git clone https://github.com/codesuke/Nexus.git
 cd Nexus
 ```
 
-### 2️⃣ Backend Setup
+#### 2️⃣ Backend Setup
+
 ```bash
 cd nexus_server
 
 # Install dependencies
 npm install
 
-# Copy environment template
+# Create environment file
 cp .env.example .env
-
-# Get Cloudinary credentials (free):
-# https://cloudinary.com/users/register/free
-# Add to .env
-
-# Start with Docker (includes DynamoDB Local)
-npm run docker:up
-
-# Seed database
-npm run seed
-
-# Test API
-.\test-api.ps1
 ```
 
-**📖 Full backend guide:** `nexus_server/DEPLOYMENT_GUIDE.md`
+**Configure `.env` with your credentials:**
+```env
+PORT=8001
+NODE_ENV=development
 
-### 3️⃣ Frontend Setup
+# MongoDB Atlas (create free cluster at mongodb.com/cloud/atlas)
+MONGODB_URI=mongodb+srv://username:password@cluster.mongodb.net/nexus
+
+# Clerk (get from dashboard.clerk.com)
+CLERK_PUBLISHABLE_KEY=pk_test_...
+CLERK_SECRET_KEY=sk_test_...
+
+# Cloudinary (get from cloudinary.com)
+CLOUDINARY_CLOUD_NAME=your_cloud_name
+CLOUDINARY_API_KEY=your_api_key
+CLOUDINARY_API_SECRET=your_api_secret
+
+# Frontend URL for CORS
+FRONTEND_URL=http://localhost:3000
+```
+
+**Start the server:**
+```bash
+# Seed database with sample data
+npm run seed
+
+# Start development server
+npm run dev
+```
+
+Server runs at: `http://localhost:8001`
+
+#### 3️⃣ Frontend Setup
+
 ```bash
 cd nexus_client
 
 # Install dependencies
 npm install
 
-# Copy environment template
+# Create environment file
 cp .env.local.example .env.local
+```
 
-# Add your Clerk keys (from dashboard.clerk.com)
-# Add backend URL: http://localhost:8001
+**Configure `.env.local`:**
+```env
+# Backend API
+NEXT_PUBLIC_API_BASE_URL=http://localhost:8001
 
-# Start development server
+# Clerk Authentication
+NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=pk_test_...
+CLERK_SECRET_KEY=sk_test_...
+
+# Cloudinary
+CLOUDINARY_CLOUD_NAME=your_cloud_name
+CLOUDINARY_API_KEY=your_api_key
+CLOUDINARY_API_SECRET=your_api_secret
+```
+
+**Start the development server:**
+```bash
 npm run dev
 ```
 
-Open: http://localhost:3000
+Frontend runs at: `http://localhost:3000` 🎉
 
 ---
 
 ## 🌐 Deployment
 
-### Frontend (Vercel) - Already Deployed ✅
-- Connected to GitHub
-- Auto-deploys on push
-- Environment variables configured
+### Frontend Deployment (Vercel)
 
-### Backend (Railway) - Ready to Deploy
+**Automatic deployment is already configured!** Every push to `main` branch auto-deploys.
+
+**Manual deployment:**
 ```bash
-# Push to GitHub
-git push origin main
+cd nexus_client
 
-# Deploy to Railway:
-1. Sign up at railway.app
-2. New Project → Deploy from GitHub
-3. Select nexus_server folder
-4. Add environment variables
-5. Deploy!
+# Install Vercel CLI
+npm i -g vercel
+
+# Deploy
+vercel --prod
 ```
 
-**Detailed deployment guide:** `nexus_server/DEPLOYMENT_GUIDE.md`
+**Environment variables to set in Vercel dashboard:**
+- `NEXT_PUBLIC_API_BASE_URL` → Your Render backend URL
+- `NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY`
+- `CLERK_SECRET_KEY`
+- `CLOUDINARY_CLOUD_NAME`
+- `CLOUDINARY_API_KEY`
+- `CLOUDINARY_API_SECRET`
+
+### Backend Deployment (Render)
+
+1. **Create Render Account** at [render.com](https://render.com)
+
+2. **Create New Web Service**
+   - Connect your GitHub repository
+   - Root Directory: `nexus_server`
+   - Build Command: `npm install && npm run build`
+   - Start Command: `npm start`
+
+3. **Configure Environment Variables** (in Render dashboard):
+   ```
+   PORT=8001
+   NODE_ENV=production
+   MONGODB_URI=<your_mongodb_atlas_connection_string>
+   CLERK_PUBLISHABLE_KEY=<your_clerk_key>
+   CLERK_SECRET_KEY=<your_clerk_secret>
+   CLOUDINARY_CLOUD_NAME=<your_cloudinary_name>
+   CLOUDINARY_API_KEY=<your_cloudinary_key>
+   CLOUDINARY_API_SECRET=<your_cloudinary_secret>
+   FRONTEND_URL=https://nexus-beta-two.vercel.app
+   ```
+
+4. **MongoDB Atlas Network Access**
+   - Go to MongoDB Atlas → Network Access
+   - Add IP Address: `0.0.0.0/0` (Allow from anywhere)
+   - Required for Render to connect
+
+5. **Deploy!** Render auto-deploys from GitHub on every push.
 
 ---
 
-## 💰 Cost Breakdown
+## 💰 Cost Breakdown (Free Tier)
 
-| Service | Free Tier | Usage |
-|---------|-----------|-------|
-| **Vercel** | Unlimited | Frontend hosting |
-| **Railway** | $5 credits/month | Backend hosting |
-| **Cloudinary** | 25GB storage + 25GB bandwidth | Video hosting |
-| **Clerk** | 10,000 MAU | Authentication |
-| **DynamoDB Local** | Unlimited | Database (Docker) |
-| **TOTAL** | **$0/month** | 🎉 |
+| Service | Plan | Limits | Cost |
+|---------|------|--------|------|
+| **Vercel** | Hobby | Unlimited deployments, 100GB bandwidth | **$0** |
+| **Render** | Free | 750 hours/month, sleeps after 15min idle | **$0** |
+| **MongoDB Atlas** | M0 Cluster | 512MB storage, shared CPU | **$0** |
+| **Cloudinary** | Free | 25GB storage, 25GB bandwidth/month | **$0** |
+| **Clerk** | Free | 10,000 monthly active users | **$0** |
+| **Total Monthly Cost** | | | **$0** 🎉 |
 
-*Can upgrade to real AWS DynamoDB ($1-5/mo) and Stripe payments (2.9% per transaction) later*
-
----
-
-## 🎯 What Makes This Special
-
-### 1. **Zero Cost MVP**
-- Entire stack runs on free tiers
-- Perfect for portfolio/demo projects
-- No credit card required
-
-### 2. **Production Ready**
-- Docker containerization
-- Environment-based configuration
-- Scalable architecture
-- Complete documentation
-
-### 3. **Easy to Upgrade**
-- Switch to real Stripe payments
-- Migrate to AWS DynamoDB
-- Scale horizontally on Railway
-
-### 4. **Modern Stack**
-- Latest Next.js 16 with App Router
-- TypeScript throughout
-- Clerk for auth (no JWT headaches)
-- Cloudinary for video (no S3 complexity)
+> **Upgrade Path:** Scale to paid tiers as your user base grows (Render $7/mo, MongoDB $9/mo, Cloudinary $89/mo)
 
 ---
 
-## 📚 Documentation
+## 🎯 Key Highlights
 
-- **Implementation Summary:** `IMPLEMENTATION_SUMMARY.md`
-- **Backend Deployment:** `nexus_server/DEPLOYMENT_GUIDE.md`
-- **Quick Start:** `nexus_server/QUICKSTART.md`
-- **Environment Variables:** `nexus_server/.env.example`
-- **API Testing:** `nexus_server/test-api.ps1`
+### ✅ Production-Ready Features
+- 🔐 **Secure Authentication** - Industry-standard OAuth with Clerk
+- 🎥 **Video Streaming** - CDN-powered video delivery via Cloudinary
+- 📊 **Real-time Progress** - Track learning across chapters and sections
+- 💳 **Payment System** - Demo transactions (ready for Stripe integration)
+- 🔍 **Search & Filter** - Find courses by category, level, and instructor
+- 📱 **Responsive Design** - Seamless experience on mobile, tablet, and desktop
+
+### 🚀 Developer Experience
+- 📝 **Full TypeScript** - Type safety across frontend and backend
+- 🧪 **Seeding Scripts** - Populate database with sample data
+- 🔄 **Auto-Deploy** - CI/CD with GitHub integration
+- 📚 **Comprehensive Docs** - Setup guides and API documentation
+- 🎨 **Component Library** - shadcn/ui for consistent UI
+- ⚡ **Fast Reload** - HMR with Next.js dev server
+
+### 📈 Scalability
+- 🗄️ **MongoDB Atlas** - Horizontal scaling ready
+- 🌐 **CDN Caching** - Fast global content delivery
+- 🔌 **RESTful API** - Clean separation of concerns
+- 🐳 **Dockerized** - Container-ready for any platform
+- 🔧 **Environment Configs** - Easy multi-environment setup
 
 ---
 
-## 🔑 Environment Variables
+## 📚 API Documentation
 
-### Backend (nexus_server/.env)
-```env
-# Server
-PORT=8001
-NODE_ENV=development
+### Base URL
+- **Production:** `https://nexus-server-0pm2.onrender.com`
+- **Local:** `http://localhost:8001`
 
-# Clerk
-CLERK_SECRET_KEY=sk_test_...
-CLERK_PUBLISHABLE_KEY=pk_test_...
+### Core Endpoints
 
-# Cloudinary (free account)
-CLOUDINARY_CLOUD_NAME=your_cloud_name
-CLOUDINARY_API_KEY=your_api_key
-CLOUDINARY_API_SECRET=your_api_secret
-
-# AWS (fake for local DynamoDB)
-AWS_REGION=us-east-1
-AWS_ACCESS_KEY_ID=fakeKeyForLocal
-AWS_SECRET_ACCESS_KEY=fakeSecretForLocal
+#### Courses
+```http
+GET    /courses              # List all courses
+GET    /courses/:courseId    # Get course details
+POST   /courses              # Create course (teacher only)
+PUT    /courses/:courseId    # Update course (teacher only)
+DELETE /courses/:courseId    # Delete course (teacher only)
 ```
 
-### Frontend (nexus_client/.env.local)
-```env
-# API
-NEXT_PUBLIC_API_BASE_URL=http://localhost:8001
+#### Transactions
+```http
+GET    /transactions         # List all transactions
+POST   /transactions         # Create enrollment transaction
+GET    /transactions/user/:userId  # User's transactions
+```
 
-# Clerk
-NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=pk_test_...
-CLERK_SECRET_KEY=sk_test_...
+#### User Progress
+```http
+GET    /user-course-progress/:userId              # User's all progress
+GET    /user-course-progress/:userId/:courseId    # Course-specific progress
+PUT    /user-course-progress/:userId/:courseId    # Update progress
+```
 
-# Cloudinary (for upload widget)
-NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME=your_cloud_name
+#### User Management (Clerk Integration)
+```http
+POST   /users/clerk          # Sync Clerk user to database
+PUT    /users/clerk/:userId  # Update user profile
 ```
 
 ---
 
-## 🧪 Testing
+## �️ Available Scripts
 
-### Backend API Tests
-```powershell
-cd nexus_server
+### Backend (nexus_server)
+```bash
+npm run dev           # Start development server with hot reload
+npm run build         # Compile TypeScript to JavaScript
+npm start             # Run production server
+npm run seed          # Seed database with sample data
+npm run check-accounts # Verify user accounts in database
+npm run setup-accounts # Configure test accounts
+```
 
-# Automated testing
-.\test-api.ps1
+### Frontend (nexus_client)
+```bash
+npm run dev           # Start Next.js development server
+npm run build         # Build for production
+npm start             # Run production build locally
+npm run lint          # Run ESLint
+```
 
-# Manual testing
-# Health check
-curl http://localhost:8001
+---
 
-# List courses
-curl http://localhost:8001/courses
+## 🔒 Security Features
 
-# Create payment intent
-curl -X POST http://localhost:8001/transactions/payment-intent \
-  -H "Content-Type: application/json" \
-  -d '{"amount": 4999}'
+- ✅ **Clerk Authentication** - Secure OAuth & JWT handling
+- ✅ **Environment Variables** - Secrets never committed to Git
+- ✅ **CORS Protection** - Whitelisted origins only
+- ✅ **Helmet.js** - Security headers for Express
+- ✅ **MongoDB Atlas** - Encrypted connections & access control
+- ✅ **Rate Limiting** - Coming soon (DDoS protection)
+
+---
+
+## 🎨 UI Components
+
+Built with **shadcn/ui** - a collection of beautiful, accessible components:
+
+- **Cards** - Course cards, teacher cards, preview cards
+- **Forms** - Custom form fields with validation
+- **Modals** - Custom modal component for overlays
+- **Navigation** - Sidebar, navbar, toolbar components
+- **Loading States** - Skeletons and spinners
+- **Accordions** - Collapsible sections for course content
+- **Buttons, Inputs, Selects** - Full form element library
+
+---
+
+## 🧪 Database Schema
+
+### Course
+```typescript
+{
+  courseId: string        // Unique identifier
+  teacherId: string       // Instructor's user ID
+  teacherName: string     // Instructor display name
+  title: string           // Course title
+  description: string     // Course description
+  category: string        // e.g., "Web Development"
+  image: string           // Thumbnail URL
+  price: number           // Price in cents
+  level: string           // "Beginner" | "Intermediate" | "Advanced"
+  status: string          // "Draft" | "Published"
+  sections: Section[]     // Array of sections
+  enrollments: Enrollment[] // Students enrolled
+}
+```
+
+### Transaction
+```typescript
+{
+  transactionId: string   // Unique ID
+  userId: string          // Student's user ID
+  courseId: string        // Purchased course ID
+  paymentProvider: string // "demo" | "stripe"
+  amount: number          // Amount paid (cents)
+  dateTime: Date          // Purchase timestamp
+}
+```
+
+### UserCourseProgress
+```typescript
+{
+  userId: string          // Student's user ID
+  courseId: string        // Course being tracked
+  enrollmentDate: Date    // When enrolled
+  overallProgress: number // 0-100 percentage
+  sections: {             // Per-section progress
+    sectionId: string
+    chapters: {
+      chapterId: string
+      completed: boolean
+    }[]
+  }[]
+  lastAccessedTimestamp: Date
+}
 ```
 
 ---
 
 ## 🤝 Contributing
 
-This is a demo/portfolio project. Feel free to:
-- Fork and customize
-- Use as template for your LMS
-- Learn from the implementation
-- Suggest improvements
+Contributions are welcome! This project is open for:
+
+- 🐛 Bug fixes
+- ✨ Feature requests
+- 📝 Documentation improvements
+- 🎨 UI/UX enhancements
+
+**To contribute:**
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
+
+---
+
+## 🗺️ Roadmap
+
+### Phase 1 (Current) ✅
+- [x] Course management system
+- [x] Video hosting integration
+- [x] Student progress tracking
+- [x] Demo payment system
+- [x] Full deployment
+
+### Phase 2 (Planned)
+- [ ] Real Stripe payment integration
+- [ ] Certificate generation
+- [ ] Course reviews & ratings
+- [ ] Discussion forums
+- [ ] Live classes support
+
+### Phase 3 (Future)
+- [ ] Mobile app (React Native)
+- [ ] AI-powered course recommendations
+- [ ] Quiz & assessment system
+- [ ] Gamification (badges, leaderboards)
+- [ ] Multi-language support
+
+---
+
+## 📖 Documentation
+
+Comprehensive guides available in the `/Guides` folder:
+
+- **`ARCHITECTURE.md`** - System architecture overview
+- **`BACKEND_DEPLOYMENT_GUIDE.md`** - Step-by-step backend deployment
+- **`BACKEND_QUICKSTART.md`** - Quick backend setup
+- **`IMPLEMENTATION_SUMMARY.md`** - Complete feature documentation
+- **`AWS_DYNAMODB_SETUP.md`** - (Legacy) DynamoDB setup guide
+
+---
+
+## 🐛 Troubleshooting
+
+### Backend won't connect to MongoDB
+- ✅ Check MongoDB Atlas is allowing `0.0.0.0/0` in Network Access
+- ✅ Verify `MONGODB_URI` is correct in environment variables
+- ✅ Ensure connection string includes database name
+
+### Frontend can't reach backend
+- ✅ Check `NEXT_PUBLIC_API_BASE_URL` points to correct backend URL
+- ✅ Verify CORS is configured with correct `FRONTEND_URL`
+- ✅ On Render free tier, first request takes ~30s (cold start)
+
+### Video upload not working
+- ✅ Confirm Cloudinary credentials are correct
+- ✅ Check Cloudinary dashboard for upload quota
+- ✅ Verify video file size is under limit
+
+### Build fails on Render
+- ✅ Ensure all environment variables are set
+- ✅ Check Render logs for specific error
+- ✅ Verify `package.json` scripts are correct
 
 ---
 
 ## 📄 License
 
-MIT License - See LICENSE file for details
+This project is licensed under the **MIT License** - see the [LICENSE](LICENSE) file for details.
+
+```
+MIT License
+
+Copyright (c) 2025 codesuke
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+```
 
 ---
 
 ## 👨‍💻 Author
 
 **codesuke**
-- GitHub: [@codesuke](https://github.com/codesuke)
-- Project: Nexus LMS
+- 🐙 GitHub: [@codesuke](https://github.com/codesuke)
+- 🌐 Portfolio: [Nexus LMS](https://nexus-beta-two.vercel.app/)
+- 📧 Contact: Open to collaboration and opportunities
 
 ---
 
 ## 🙏 Acknowledgments
 
-- **Clerk** - Authentication made easy
-- **Cloudinary** - Free video hosting
-- **Railway** - Simple deployment
-- **shadcn/ui** - Beautiful components
-- **DynamoDB Local** - Local development database
+Special thanks to the amazing open-source community:
+
+- **[Next.js](https://nextjs.org/)** - The React Framework for Production
+- **[Clerk](https://clerk.com/)** - Authentication made simple
+- **[MongoDB](https://www.mongodb.com/)** - Modern database for modern apps
+- **[Cloudinary](https://cloudinary.com/)** - Media management platform
+- **[shadcn/ui](https://ui.shadcn.com/)** - Beautiful component library
+- **[Tailwind CSS](https://tailwindcss.com/)** - Utility-first CSS framework
+- **[Vercel](https://vercel.com/)** - Frontend hosting platform
+- **[Render](https://render.com/)** - Backend deployment platform
 
 ---
 
-## 📞 Support
+## � Project Stats
 
-Issues? Questions? Check:
-1. `IMPLEMENTATION_SUMMARY.md` - What was built and why
-2. `nexus_server/DEPLOYMENT_GUIDE.md` - Step-by-step deployment
-3. `nexus_server/QUICKSTART.md` - 5-minute quick start
-
-Or open an issue on GitHub!
+![GitHub repo size](https://img.shields.io/github/repo-size/codesuke/Nexus?style=flat-square)
+![GitHub language count](https://img.shields.io/github/languages/count/codesuke/Nexus?style=flat-square)
+![GitHub top language](https://img.shields.io/github/languages/top/codesuke/Nexus?style=flat-square)
+![GitHub last commit](https://img.shields.io/github/last-commit/codesuke/Nexus?style=flat-square)
 
 ---
 
-**⭐ Star this repo if you found it helpful!**
+## 💬 Support
 
-*Built with ❤️ using Next.js, Express, DynamoDB, and Cloudinary*
+Need help? Have questions?
+
+- 📖 Check the [Documentation](Guides/)
+- 🐛 Open an [Issue](https://github.com/codesuke/Nexus/issues)
+- 💬 Start a [Discussion](https://github.com/codesuke/Nexus/discussions)
+
+---
+
+<div align="center">
+
+### ⭐ Star this repo if you found it helpful!
+
+**Built with ❤️ using Next.js, Express, MongoDB, and Cloudinary**
+
+[🔝 Back to Top](#-nexus-lms)
+
+</div>
