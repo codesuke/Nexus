@@ -1,8 +1,8 @@
 import { Request, Response } from "express";
 import { v4 as uuidv4 } from "uuid";
-import Course from "../models/courseModel";
-import Transaction from "../models/transactionModel";
-import UserCourseProgress from "../models/userCourseProgressModel";
+import Course from "../models/courseModel.mongoose";
+import Transaction from "../models/transactionModel.mongoose";
+import UserCourseProgress from "../models/userCourseProgressModel.mongoose";
 
 /**
  * Create a new course (Admin version - full course creation)
@@ -114,7 +114,7 @@ export const assignCoursesToUser = async (
     for (const courseId of courseIds) {
       try {
         // 1. Get course info
-        const course = await Course.get(courseId);
+        const course = await Course.findOne({ courseId });
         if (!course) {
           results.failed.push({
             courseId,
@@ -153,7 +153,7 @@ export const assignCoursesToUser = async (
           courseId,
           enrollmentDate: new Date().toISOString(),
           overallProgress: 0,
-          sections: course.sections.map((section: any) => ({
+          sections: (course.sections || []).map((section: any) => ({
             sectionId: section.sectionId,
             chapters: section.chapters.map((chapter: any) => ({
               chapterId: chapter.chapterId,
@@ -165,14 +165,8 @@ export const assignCoursesToUser = async (
         await initialProgress.save();
 
         // 5. Add enrollment to course
-        await Course.update(
-          { courseId },
-          {
-            $ADD: {
-              enrollments: [{ userId }],
-            },
-          }
-        );
+        course.enrollments = [...(course.enrollments || []), { userId }];
+        await course.save();
 
         results.success.push(courseId);
       } catch (error) {
@@ -214,7 +208,7 @@ export const listAllCourses = async (
   res: Response
 ): Promise<void> => {
   try {
-    const courses = await Course.scan().exec();
+    const courses = await Course.find().exec();
 
     const courseList = courses.map((course: any) => ({
       courseId: course.courseId,
@@ -253,12 +247,12 @@ export const getUserCourses = async (
 
   try {
     // Get user's transactions
-    const transactions = await Transaction.query("userId").eq(userId).exec();
+    const transactions = await Transaction.find({ userId }).exec();
 
     // Get course details for each transaction
     const enrolledCourses = await Promise.all(
       transactions.map(async (transaction: any) => {
-        const course = await Course.get(transaction.courseId);
+        const course = await Course.findOne({ courseId: transaction.courseId });
         return {
           courseId: transaction.courseId,
           title: course?.title || "Unknown Course",

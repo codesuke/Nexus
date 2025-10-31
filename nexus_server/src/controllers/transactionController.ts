@@ -2,9 +2,9 @@
 import dotenv from "dotenv";
 import { Request, Response } from "express";
 import { v4 as uuidv4 } from "uuid";
-import Course from "../models/courseModel";
-import Transaction from "../models/transactionModel";
-import UserCourseProgress from "../models/userCourseProgressModel";
+import Course from "../models/courseModel.mongoose";
+import Transaction from "../models/transactionModel.mongoose";
+import UserCourseProgress from "../models/userCourseProgressModel.mongoose";
 
 dotenv.config();
 
@@ -16,8 +16,8 @@ export const listTransactions = async (
 
   try {
     const transactions = userId
-      ? await Transaction.query("userId").eq(userId).exec()
-      : await Transaction.scan().exec();
+      ? await Transaction.find({ userId }).exec()
+      : await Transaction.find().exec();
 
     res.json({
       message: "Transactions retrieved successfully",
@@ -74,7 +74,7 @@ export const createTransaction = async (
     }
 
     // 2. Get course info
-    const course = await Course.get(courseId);
+    const course = await Course.findOne({ courseId });
     if (!course) {
       res.status(404).json({ message: "Course not found" });
       return;
@@ -123,14 +123,8 @@ export const createTransaction = async (
     await initialProgress.save();
 
     // 7. Add enrollment to course
-    await Course.update(
-      { courseId },
-      {
-        $ADD: {
-          enrollments: [{ userId }],
-        },
-      }
-    );
+    course.enrollments = [...(course.enrollments || []), { userId }];
+    await course.save();
 
     res.json({
       message: paymentProvider === "demo" 

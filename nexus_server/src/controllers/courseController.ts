@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import Course from "../models/courseModel";
+import Course from "../models/courseModel.mongoose";
 import { v4 as uuidv4 } from "uuid";
 import { getAuth } from "@clerk/express";
 import { generateUploadSignature } from "../utils/cloudinary";
@@ -12,8 +12,8 @@ export const listCourses = async (
   try {
     const courses =
       category && category !== "all"
-        ? await Course.scan("category").eq(category).exec()
-        : await Course.scan().exec();
+        ? await Course.find({ category }).exec()
+        : await Course.find().exec();
     res.json({ message: "Courses retrieved successfully", data: courses });
   } catch (error) {
     res.status(500).json({ message: "Error retrieving courses", error });
@@ -29,7 +29,7 @@ export const getCourse = async (req: Request, res: Response): Promise<void> => {
   }
   
   try {
-    const course = await Course.get(courseId);
+    const course = await Course.findOne({ courseId });
     if (!course) {
       res.status(404).json({ message: "Course not found" });
       return;
@@ -89,7 +89,7 @@ export const updateCourse = async (
   }
 
   try {
-    const course: any = await Course.get(courseId);
+    const course: any = await Course.findOne({ courseId });
     if (!course) {
       res.status(404).json({ message: "Course not found" });
       return;
@@ -152,7 +152,7 @@ export const deleteCourse = async (
   }
 
   try {
-    const course: any = await Course.get(courseId);
+    const course: any = await Course.findOne({ courseId });
     if (!course) {
       res.status(404).json({ message: "Course not found" });
       return;
@@ -165,7 +165,7 @@ export const deleteCourse = async (
       return;
     }
 
-    await Course.delete(courseId);
+    await Course.deleteOne({ courseId });
 
     res.json({ message: "Course deleted successfully", data: course });
   } catch (error) {

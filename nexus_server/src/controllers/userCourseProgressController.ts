@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 import { getAuth } from "@clerk/express";
-import UserCourseProgress from "../models/userCourseProgressModel";
-import Course from "../models/courseModel";
+import UserCourseProgress from "../models/userCourseProgressModel.mongoose";
+import Course from "../models/courseModel.mongoose";
 import { calculateOverallProgress } from "../utils/utils";
 import { mergeSections } from "../utils/utils";
 
@@ -18,11 +18,9 @@ export const getUserEnrolledCourses = async (
   }
 
   try {
-    const enrolledCourses = await UserCourseProgress.query("userId")
-      .eq(userId)
-      .exec();
+    const enrolledCourses = await UserCourseProgress.find({ userId }).exec();
     const courseIds = enrolledCourses.map((item: any) => item.courseId);
-    const courses = await Course.batchGet(courseIds);
+    const courses = await Course.find({ courseId: { $in: courseIds } }).exec();
     res.json({
       message: "Enrolled courses retrieved successfully",
       data: courses,
@@ -46,7 +44,7 @@ export const getUserCourseProgress = async (
   }
 
   try {
-    const progress = await UserCourseProgress.get({ userId, courseId });
+    const progress = await UserCourseProgress.findOne({ userId, courseId });
     if (!progress) {
       res
         .status(404)
@@ -77,7 +75,7 @@ export const updateUserCourseProgress = async (
   }
 
   try {
-    let progress: any = await UserCourseProgress.get({ userId, courseId });
+    let progress: any = await UserCourseProgress.findOne({ userId, courseId });
 
     if (!progress) {
       // If no progress exists, create initial progress
@@ -102,7 +100,7 @@ export const updateUserCourseProgress = async (
     await progress.save();
 
     res.json({
-      message: "",
+      message: "Course progress updated successfully",
       data: progress,
     });
   } catch (error) {

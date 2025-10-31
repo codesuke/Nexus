@@ -39,6 +39,7 @@
     "dynamoose": "^4.0.4",
     "express": "^5.1.0",
     "helmet": "^8.1.0",
+    "mongoose": "^8.19.2",
     "morgan": "^1.10.1",
     "multer": "^2.0.2",
     "pluralize": "^8.0.0",
