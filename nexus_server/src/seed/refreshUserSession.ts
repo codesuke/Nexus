@@ -26,6 +26,12 @@ const refreshUserSession = async (userId: string) => {
     }
 
     const user = sessions.data[0];
+    
+    if (!user) {
+      console.log("❌ User data is undefined");
+      return;
+    }
+    
     console.log(`✅ Found user: ${user.emailAddresses[0]?.emailAddress}`);
     console.log(`📋 Current metadata: ${JSON.stringify(user.publicMetadata)}`);
 

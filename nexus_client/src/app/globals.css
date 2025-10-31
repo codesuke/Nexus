@@ -37,64 +37,64 @@ input[type="color"] {
 
 @layer base {
   :root {
-    --sidebar-background: theme("colors.customgreys.primarybg");
+    --sidebar-background: theme("colors.customgreys.darkGrey");
     --sidebar-foreground: theme("colors.white.50");
-    --sidebar-primary: theme("colors.primary.700");
-    --sidebar-primary-foreground: theme("colors.white.50");
+    --sidebar-primary: theme("colors.primary.600");
+    --sidebar-primary-foreground: theme("colors.white.100");
     --sidebar-accent: theme("colors.customgreys.darkerGrey");
     --sidebar-accent-foreground: theme("colors.customgreys.dirtyGrey");
     --sidebar-border: theme("colors.customgreys.secondarybg");
-    --sidebar-ring: theme("colors.primary.700");
-    --popover: theme("colors.customgreys.primarybg");
+    --sidebar-ring: theme("colors.primary.600");
+    --popover: theme("colors.customgreys.secondarybg");
     --popover-foreground: theme("colors.white.50");
 
     --background: theme("colors.customgreys.primarybg");
     --foreground: theme("colors.white.50");
 
-    --primary: theme("colors.primary.700");
-    --primary-foreground: theme("colors.white.50");
+    --primary: theme("colors.primary.600");
+    --primary-foreground: theme("colors.white.100");
 
-    --muted: theme("colors.primary.600");
+    --muted: theme("colors.secondary.700");
     --muted-foreground: theme("colors.customgreys.dirtyGrey");
 
-    --accent: theme("colors.primary.600");
-    --accent-foreground: theme("colors.white.50");
+    --accent: theme("colors.primary.500");
+    --accent-foreground: theme("colors.white.100");
 
-    --border: theme("colors.customgreys.secondarybg");
-    --ring: theme("colors.primary.700");
+    --border: theme("colors.customgreys.darkerGrey");
+    --ring: theme("colors.primary.600");
 
-    --card: theme("colors.customgreys.primarybg");
+    --card: theme("colors.customgreys.secondarybg");
     --card-foreground: theme("colors.white.50");
   }
 
   .dark {
-    --sidebar-background: theme("colors.customgreys.primarybg");
+    --sidebar-background: theme("colors.customgreys.darkGrey");
     --sidebar-foreground: theme("colors.white.50");
-    --sidebar-primary: theme("colors.primary.700");
-    --sidebar-primary-foreground: theme("colors.white.50");
+    --sidebar-primary: theme("colors.primary.600");
+    --sidebar-primary-foreground: theme("colors.white.100");
     --sidebar-accent: theme("colors.customgreys.darkerGrey");
     --sidebar-accent-foreground: theme("colors.customgreys.dirtyGrey");
     --sidebar-border: theme("colors.customgreys.secondarybg");
-    --sidebar-ring: theme("colors.primary.700");
-    --popover: theme("colors.customgreys.primarybg");
+    --sidebar-ring: theme("colors.primary.600");
+    --popover: theme("colors.customgreys.secondarybg");
     --popover-foreground: theme("colors.white.50");
 
     --background: theme("colors.customgreys.primarybg");
     --foreground: theme("colors.white.50");
 
-    --primary: theme("colors.primary.700");
-    --primary-foreground: theme("colors.white.50");
+    --primary: theme("colors.primary.600");
+    --primary-foreground: theme("colors.white.100");
 
-    --muted: theme("colors.primary.600");
+    --muted: theme("colors.secondary.700");
     --muted-foreground: theme("colors.customgreys.dirtyGrey");
 
-    --accent: theme("colors.primary.600");
-    --accent-foreground: theme("colors.white.50");
+    --accent: theme("colors.primary.500");
+    --accent-foreground: theme("colors.white.100");
 
-    --border: theme("colors.customgreys.secondarybg");
-    --ring: theme("colors.primary.700");
+    --border: theme("colors.customgreys.darkerGrey");
+    --ring: theme("colors.primary.600");
 
-    --card: theme("colors.customgreys.primarybg");
+    --card: theme("colors.customgreys.secondarybg");
     --card-foreground: theme("colors.white.50");
   }
 }

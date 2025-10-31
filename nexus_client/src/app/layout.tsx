@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { DM_Sans } from "next/font/google";
 import "./globals.css";
 import Providers from "./providers";
@@ -11,6 +11,11 @@ const dmSans = DM_Sans({
   display: "swap",
   variable: "--font-dm-sans",
 });
+
+export const viewport: Viewport = {
+  themeColor: "#d95a2b",
+  colorScheme: "dark",
+};
 
 export const metadata: Metadata = {
   title: "Nexus LMS - Learn, Grow, Excel",
