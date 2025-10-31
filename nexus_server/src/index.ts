@@ -4,9 +4,10 @@ import bodyParser from "body-parser";
 import cors from "cors";
 import helmet from "helmet";
 import morgan from "morgan";
-import * as dynamoose from "dynamoose";
-// import serverless from "serverless-http"; // AWS Lambda - Disabled for Render deployment
-// import seed from "./seed/seedDynamodb"; // AWS Lambda seed - Disabled for Render deployment
+import connectDB from "./config/database";
+// import * as dynamoose from "dynamoose"; // DynamoDB - Replaced with MongoDB
+// import serverless from "serverless-http"; // AWS Lambda - Disabled for Railway deployment
+// import seed from "./seed/seedMongoDB"; // MongoDB seed
 import {
   clerkMiddleware,
   createClerkClient,
@@ -22,9 +23,9 @@ import adminRoutes from "./routes/adminRoutes";
 /* CONFIGURATIONS */
 dotenv.config();
 const isProduction = process.env.NODE_ENV === "production";
-if (!isProduction) {
-  dynamoose.aws.ddb.local();
-}
+
+// Connect to MongoDB
+connectDB();
 
 if (!process.env.CLERK_SECRET_KEY) {
   throw new Error("CLERK_SECRET_KEY is required");

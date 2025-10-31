@@ -70,7 +70,8 @@ async function seedData(modelName: string, filePath: string) {
 
   try {
     for (const item of data) {
-      await Model.create(item);
+      const doc = new Model(item);
+      await doc.save();
     }
     console.log(`   ✓ Successfully seeded ${data.length} ${modelName}`);
   } catch (error) {
