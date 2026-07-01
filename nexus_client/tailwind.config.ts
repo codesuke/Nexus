@@ -53,11 +53,11 @@ const config = {
           ring: "hsl(var(--sidebar-ring))",
         },
         customgreys: {
-          primarybg: "#121212",
-          secondarybg: "#1E1E1E",
-          darkGrey: "#0A0A0A",
-          darkerGrey: "#333333",
-          dirtyGrey: "#888888",
+          primarybg: "#F7F2EA",
+          secondarybg: "#FFFFFF",
+          darkGrey: "#181511",
+          darkerGrey: "#2A251F",
+          dirtyGrey: "#8C8478",
         },
         primary: {
           "50": "#fef5f2",
@@ -134,6 +134,7 @@ const config = {
       },
       fontFamily: {
         sans: ["var(--font-dm-sans)"],
+        serif: ["var(--font-fraunces)"],
       },
       fontSize: {
         xs: ["0.75rem", { lineHeight: "1rem" }],

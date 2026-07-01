@@ -106,10 +106,10 @@ const PaymentPageContent = () => {
               </p>
               
               {/* User Info Display */}
-              <div className="mb-4 p-3 bg-customgreys-secondarybg rounded-lg border border-customgreys-darkGrey">
-                <p className="text-sm text-gray-400">
+              <div className="mb-4 p-3 bg-customgreys-primarybg rounded-lg border border-customgreys-dirtyGrey/30">
+                <p className="text-sm text-customgreys-dirtyGrey">
                   {currentUser?.isGuest ? "🎭 Demo Mode - " : "👤 Logged in as: "}
-                  <span className="text-white-50 font-medium">{displayEmail}</span>
+                  <span className="text-customgreys-darkGrey font-medium">{displayEmail}</span>
                 </p>
               </div>
 
@@ -153,7 +153,7 @@ const PaymentPageContent = () => {
                           />
                         </div>
                       </div>
-                      <p className="text-sm text-gray-400 italic">
+                      <p className="text-sm text-customgreys-dirtyGrey italic">
                         Demo payment - No real transaction will be processed
                       </p>
                     </div>
@@ -168,7 +168,7 @@ const PaymentPageContent = () => {
       {/* Navigation Buttons */}
       <div className="payment__actions">
         <Button
-          className="hover:bg-white-50/10"
+          className="hover:bg-customgreys-primarybg"
           onClick={handleSignOutAndNavigate}
           variant="outline"
           type="button"

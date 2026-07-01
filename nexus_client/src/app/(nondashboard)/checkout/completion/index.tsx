@@ -16,7 +16,7 @@ const CompletionPage = () => {
     <div className="completion">
       <div className="completion__content">
         <div className="completion__icon">
-          <Check className="w-16 h-16" />
+          <Check className="w-16 h-16 text-white-100" />
         </div>
         <h1 className="completion__title">COMPLETED</h1>
         <p className="completion__message">
@@ -24,7 +24,7 @@ const CompletionPage = () => {
         </p>
         {isGuest && (
           <div className="mt-4 p-4 bg-yellow-500/10 border border-yellow-500/30 rounded-lg">
-            <p className="text-sm text-yellow-200">
+            <p className="text-sm text-yellow-800">
               ℹ️ <strong>Demo Mode:</strong> This was a demonstration purchase using guest checkout.
               No actual payment was processed. Create a real account to access your courses!
             </p>

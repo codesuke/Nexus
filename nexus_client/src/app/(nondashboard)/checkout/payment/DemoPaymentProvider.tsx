@@ -58,14 +58,14 @@ const DemoPaymentProvider = ({ children }: { children: React.ReactNode }) => {
     return (
       <div className="p-8 text-center">
         <div className="bg-red-500/10 border border-red-500/30 rounded-lg p-6 max-w-md mx-auto">
-          <h3 className="text-xl font-semibold text-red-400 mb-2">⚠️ Payment System Error</h3>
-          <p className="text-gray-300 mb-4">{error}</p>
-          <p className="text-sm text-gray-400">
-            Make sure the backend server is running on <code className="bg-black/30 px-2 py-1 rounded">http://localhost:8001</code>
+          <h3 className="text-xl font-semibold text-red-700 mb-2">⚠️ Payment System Error</h3>
+          <p className="text-customgreys-darkGrey mb-4">{error}</p>
+          <p className="text-sm text-customgreys-dirtyGrey">
+            Make sure the backend server is running on <code className="bg-customgreys-primarybg border border-customgreys-dirtyGrey/30 px-2 py-1 rounded">http://localhost:8001</code>
           </p>
           <button
             onClick={() => window.location.reload()}
-            className="mt-4 px-4 py-2 bg-blue-600 hover:bg-blue-700 rounded-lg transition-colors"
+            className="mt-4 px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white-100 rounded-lg transition-colors"
           >
             Retry
           </button>
