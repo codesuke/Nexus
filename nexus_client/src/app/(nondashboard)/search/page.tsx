@@ -51,8 +51,8 @@ const Search = () => {
     >
       {/* Demo Mode Banner */}
       <div className="mb-6 p-4 bg-gradient-to-r from-blue-500/10 to-purple-500/10 border border-blue-500/30 rounded-lg">
-        <h3 className="text-lg font-semibold text-white mb-2">🎭 Try Demo Mode!</h3>
-        <p className="text-sm text-gray-300">
+        <h3 className="text-lg font-semibold text-customgreys-darkGrey mb-2">🎭 Try Demo Mode!</h3>
+        <p className="text-sm text-customgreys-dirtyGrey">
           Click &quot;Enroll Now&quot; on any course and use <strong>Guest Checkout</strong> to try the full enrollment process.
           No signup required - just enter any email address to see how it works!
         </p>
