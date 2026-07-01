@@ -134,7 +134,7 @@ const ChapterModal = () => {
                     Chapter Video
                   </FormLabel>
                   <FormControl>
-                    <div>
+                    <div className="chapter-modal__video-upload">
                       <Input
                         type="file"
                         accept="video/*"
@@ -144,15 +144,15 @@ const ChapterModal = () => {
                             onChange(file);
                           }
                         }}
-                        className="border-none bg-customgreys-darkGrey py-2 cursor-pointer"
+                        className="cursor-pointer rounded-md border border-dashed border-customgreys-dirtyGrey/40 bg-customgreys-secondarybg py-2 text-customgreys-darkGrey transition-colors hover:border-primary-500/60 file:mr-4 file:cursor-pointer file:rounded-md file:border-0 file:bg-primary-600 file:px-4 file:py-2 file:text-sm file:font-medium file:text-white-100 hover:file:bg-primary-700"
                       />
                       {typeof value === "string" && value && (
-                        <div className="my-2 text-sm text-gray-600">
+                        <div className="chapter-modal__video-preview">
                           Current video: {value.split("/").pop()}
                         </div>
                       )}
                       {value instanceof File && (
-                        <div className="my-2 text-sm text-gray-600">
+                        <div className="chapter-modal__video-preview">
                           Selected file: {value.name}
                         </div>
                       )}
