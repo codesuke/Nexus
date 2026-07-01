@@ -821,7 +821,7 @@ input[type="color"] {
 }
 
 .droppable-section__header {
-  @apply flex justify-between items-center mb-2 bg-black/30 p-1 rounded;
+  @apply flex justify-between items-center mb-2 bg-customgreys-darkGrey/5 p-1 rounded;
 }
 
 .droppable-section__title-wrapper {
@@ -845,11 +845,11 @@ input[type="color"] {
 }
 
 .droppable-chapter--even {
-  @apply bg-black/40;
+  @apply bg-customgreys-darkGrey/10;
 }
 
 .droppable-chapter--odd {
-  @apply bg-black/20;
+  @apply bg-customgreys-darkGrey/5;
 }
 
 .droppable-chapter__title {
@@ -949,15 +949,15 @@ input[type="color"] {
 
 /* Accordion Sections */
 .accordion-section {
-  @apply border-x border-b border-gray-600 overflow-hidden first:border-t first:rounded-t-lg last:rounded-b-lg;
+  @apply border-x border-b border-customgreys-dirtyGrey/30 overflow-hidden first:border-t first:rounded-t-lg last:rounded-b-lg;
 }
 
 .accordion-section__trigger {
-  @apply hover:bg-gray-700/50 bg-customgreys-primarybg/50 px-4 py-3;
+  @apply hover:bg-gray-100 bg-customgreys-primarybg/50 px-4 py-3;
 }
 
 .accordion-section__title {
-  @apply text-gray-400 font-medium;
+  @apply text-customgreys-darkGrey font-medium;
 }
 
 .accordion-section__content {
@@ -965,7 +965,7 @@ input[type="color"] {
 }
 
 .accordion-section__chapter {
-  @apply flex items-center text-gray-400/90 py-1;
+  @apply flex items-center text-customgreys-dirtyGrey py-1;
 }
 
 /* Course Card */
@@ -1159,7 +1159,7 @@ input[type="color"] {
 }
 
 .wizard-stepper__circle {
-  @apply w-8 h-8 flex items-center justify-center rounded-full mb-2;
+  @apply w-8 h-8 flex items-center justify-center rounded-full mb-2 text-white-100;
 }
 
 .wizard-stepper__circle--completed {
@@ -1179,7 +1179,7 @@ input[type="color"] {
 }
 
 .wizard-stepper__text--active {
-  @apply text-white-100;
+  @apply text-customgreys-darkGrey;
 }
 
 .wizard-stepper__text--inactive {
