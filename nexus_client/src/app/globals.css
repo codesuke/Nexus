@@ -466,7 +466,7 @@ input[type="color"] {
 }
 
 .billing__select-item {
-  @apply hover:!bg-white-50 hover:!text-customgreys-primarybg cursor-pointer;
+  @apply hover:!bg-white-50 hover:!text-customgreys-darkGrey cursor-pointer;
 }
 
 .billing__grid {
@@ -482,11 +482,11 @@ input[type="color"] {
 }
 
 .billing__table-header {
-  @apply bg-customgreys-darkGrey;
+  @apply bg-customgreys-secondarybg;
 }
 
 .billing__table-header-row {
-  @apply border-none text-white-50;
+  @apply border-b border-customgreys-dirtyGrey/30 text-customgreys-darkGrey;
 }
 
 .billing__table-cell {
@@ -553,11 +553,11 @@ input[type="color"] {
 }
 
 .course__current-chapter {
-  @apply text-gray-400;
+  @apply text-customgreys-dirtyGrey;
 }
 
 .course__title {
-  @apply text-2xl text-white-50 font-semibold my-4;
+  @apply text-2xl text-customgreys-darkGrey font-semibold my-4;
 }
 
 .course__header {
@@ -677,8 +677,11 @@ input[type="color"] {
 }
 
 /* Chapters Sidebar */
+/* Kept as a deliberate dark surface (like AppSidebar) so it reads as a nav
+   rail against the light course content - hence the light text-white-50
+   ambient color and the untouched white/gray text utilities below. */
 .chapters-sidebar {
-  @apply bg-customgreys-secondarybg border-x border-gray-700 overflow-y-auto transition-all duration-500 ease-in-out animate-in fade-in slide-in-from-left flex-shrink-0;
+  @apply bg-customgreys-darkGrey text-white-50 border-x border-gray-700 overflow-y-auto transition-all duration-500 ease-in-out animate-in fade-in slide-in-from-left flex-shrink-0;
   height: 100vh;
 }
 
@@ -715,7 +718,7 @@ input[type="color"] {
 }
 
 .chapters-sidebar__section-content {
-  @apply pt-8 pb-8 bg-customgreys-primarybg/40;
+  @apply pt-8 pb-8 bg-black/20;
 }
 
 .chapters-sidebar__progress {
@@ -1260,11 +1263,11 @@ input[type="color"] {
 }
 
 .header__title {
-  @apply text-3xl font-bold text-white-50;
+  @apply text-3xl font-bold text-customgreys-darkGrey;
 }
 
 .header__subtitle {
-  @apply text-sm text-gray-500 mt-1;
+  @apply text-sm text-customgreys-dirtyGrey mt-1;
 }
 
 /* Course Card Teacher Additional Classes */
