@@ -57,7 +57,7 @@ const AppSidebar = () => {
     <Sidebar
       collapsible="icon"
       style={{ height: "100vh" }}
-      className="bg-customgreys-primarybg border-none shadow-lg"
+      className="bg-customgreys-darkGrey border-none shadow-lg"
     >
       <SidebarHeader>
         <SidebarMenu className="app-sidebar__menu">
@@ -65,7 +65,7 @@ const AppSidebar = () => {
             <SidebarMenuButton
               size="lg"
               onClick={() => toggleSidebar()}
-              className="group hover:bg-customgreys-secondarybg"
+              className="group hover:bg-customgreys-darkerGrey"
             >
               <div className="app-sidebar__logo-container group">
                 <div className="app-sidebar__logo-wrapper">

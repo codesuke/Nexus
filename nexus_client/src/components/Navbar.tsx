@@ -88,12 +88,12 @@ const Navbar = ({ isCoursePage }: { isCoursePage: boolean }) => {
 
             {/* Notification Dropdown */}
             {showNotifications && (
-              <div className="absolute right-0 top-12 w-80 bg-customgreys-secondarybg border border-customgreys-darkGrey rounded-lg shadow-lg z-50">
-                <div className="flex items-center justify-between p-4 border-b border-customgreys-darkGrey">
-                  <h3 className="text-white font-semibold">Notifications</h3>
+              <div className="absolute right-0 top-12 w-80 bg-customgreys-secondarybg border border-customgreys-dirtyGrey/30 rounded-lg shadow-lg z-50">
+                <div className="flex items-center justify-between p-4 border-b border-customgreys-dirtyGrey/30">
+                  <h3 className="text-customgreys-darkGrey font-semibold">Notifications</h3>
                   <button
                     onClick={() => setShowNotifications(false)}
-                    className="text-customgreys-dirtyGrey hover:text-white"
+                    className="text-customgreys-dirtyGrey hover:text-customgreys-darkGrey"
                   >
                     <X size={18} />
                   </button>
@@ -110,7 +110,7 @@ const Navbar = ({ isCoursePage }: { isCoursePage: boolean }) => {
                       <div
                         key={notification.id}
                         className={cn(
-                          "p-4 border-b border-customgreys-darkGrey hover:bg-customgreys-primarybg cursor-pointer transition-colors",
+                          "p-4 border-b border-customgreys-dirtyGrey/30 hover:bg-customgreys-primarybg cursor-pointer transition-colors",
                           !notification.read && "bg-customgreys-primarybg/50"
                         )}
                       >
@@ -119,18 +119,18 @@ const Navbar = ({ isCoursePage }: { isCoursePage: boolean }) => {
                             className={cn(
                               "w-2 h-2 rounded-full mt-2 flex-shrink-0",
                               notification.read
-                                ? "bg-customgreys-darkGrey"
-                                : "bg-blue-500"
+                                ? "bg-customgreys-dirtyGrey"
+                                : "bg-primary-600"
                             )}
                           />
                           <div className="flex-1 min-w-0">
-                            <h4 className="text-white font-medium text-sm mb-1">
+                            <h4 className="text-customgreys-darkGrey font-medium text-sm mb-1">
                               {notification.title}
                             </h4>
                             <p className="text-customgreys-dirtyGrey text-xs mb-2">
                               {notification.message}
                             </p>
-                            <span className="text-customgreys-darkGrey text-xs">
+                            <span className="text-customgreys-dirtyGrey text-xs">
                               {notification.time}
                             </span>
                           </div>
@@ -141,8 +141,8 @@ const Navbar = ({ isCoursePage }: { isCoursePage: boolean }) => {
                 </div>
 
                 {notifications.length > 0 && (
-                  <div className="p-3 text-center border-t border-customgreys-darkGrey">
-                    <button className="text-sm text-blue-400 hover:text-blue-300">
+                  <div className="p-3 text-center border-t border-customgreys-dirtyGrey/30">
+                    <button className="text-sm text-primary-600 hover:text-primary-500">
                       Mark all as read
                     </button>
                   </div>

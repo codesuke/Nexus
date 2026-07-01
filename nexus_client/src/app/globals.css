@@ -17,12 +17,21 @@ body,
   height: 100%;
   width: 100%;
   @apply text-sm;
-  @apply text-gray-300;
+  @apply text-foreground;
   @apply bg-customgreys-primarybg;
 }
 
 :root {
-  --radius: 8px;
+  --radius: 12px;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  @apply font-serif;
 }
 
 input[type="color"] {
@@ -36,71 +45,41 @@ input[type="color"] {
 }
 
 @layer base {
-  :root {
-    --sidebar-background: theme("colors.customgreys.darkGrey");
-    --sidebar-foreground: theme("colors.white.50");
-    --sidebar-primary: theme("colors.primary.600");
-    --sidebar-primary-foreground: theme("colors.white.100");
-    --sidebar-accent: theme("colors.customgreys.darkerGrey");
-    --sidebar-accent-foreground: theme("colors.customgreys.dirtyGrey");
-    --sidebar-border: theme("colors.customgreys.secondarybg");
-    --sidebar-ring: theme("colors.primary.600");
-    --popover: theme("colors.customgreys.secondarybg");
-    --popover-foreground: theme("colors.white.50");
-
-    --background: theme("colors.customgreys.primarybg");
-    --foreground: theme("colors.white.50");
-
-    --primary: theme("colors.primary.600");
-    --primary-foreground: theme("colors.white.100");
-
-    --muted: theme("colors.secondary.700");
-    --muted-foreground: theme("colors.customgreys.dirtyGrey");
-
-    --accent: theme("colors.primary.500");
-    --accent-foreground: theme("colors.white.100");
-
-    --border: theme("colors.customgreys.darkerGrey");
-    --ring: theme("colors.primary.600");
-
-    --card: theme("colors.customgreys.secondarybg");
-    --card-foreground: theme("colors.white.50");
-  }
-
+  :root,
   .dark {
+    /* Sidebar stays a deliberate dark-ink surface for contrast against the
+       light content area - decoupled from --background/--foreground below. */
     --sidebar-background: theme("colors.customgreys.darkGrey");
-    --sidebar-foreground: theme("colors.white.50");
+    --sidebar-foreground: 36 25% 92%;
     --sidebar-primary: theme("colors.primary.600");
     --sidebar-primary-foreground: theme("colors.white.100");
     --sidebar-accent: theme("colors.customgreys.darkerGrey");
     --sidebar-accent-foreground: theme("colors.customgreys.dirtyGrey");
-    --sidebar-border: theme("colors.customgreys.secondarybg");
+    --sidebar-border: 30 15% 18%;
     --sidebar-ring: theme("colors.primary.600");
+
     --popover: theme("colors.customgreys.secondarybg");
-    --popover-foreground: theme("colors.white.50");
+    --popover-foreground: theme("colors.customgreys.darkGrey");
 
     --background: theme("colors.customgreys.primarybg");
-    --foreground: theme("colors.white.50");
+    --foreground: theme("colors.customgreys.darkGrey");
 
     --primary: theme("colors.primary.600");
     --primary-foreground: theme("colors.white.100");
 
-    --muted: theme("colors.secondary.700");
+    --muted: 36 30% 94%;
     --muted-foreground: theme("colors.customgreys.dirtyGrey");
 
     --accent: theme("colors.primary.500");
     --accent-foreground: theme("colors.white.100");
 
-    --border: theme("colors.customgreys.darkerGrey");
+    --border: 32 20% 86%;
+    --input: 32 20% 86%;
     --ring: theme("colors.primary.600");
 
     --card: theme("colors.customgreys.secondarybg");
-    --card-foreground: theme("colors.white.50");
+    --card-foreground: theme("colors.customgreys.darkGrey");
   }
-}
-
-.bg-sidebar {
-  @apply bg-customgreys-primarybg;
 }
 
 /* Filepond */
@@ -1105,7 +1084,7 @@ input[type="color"] {
 }
 
 .navbar__search-input {
-  @apply bg-customgreys-primarybg pl-10 sm:pl-14 pr-6 sm:pr-20 py-3 sm:py-4 rounded-xl text-customgreys-dirtyGrey hover:text-white-50 hover:bg-customgreys-darkerGrey transition-all duration-300 text-sm sm:text-base;
+  @apply bg-customgreys-secondarybg pl-10 sm:pl-14 pr-6 sm:pr-20 py-3 sm:py-4 rounded-xl text-customgreys-dirtyGrey hover:text-white-50 hover:bg-customgreys-darkerGrey transition-all duration-300 text-sm sm:text-base;
 }
 
 .navbar__search-icon {
@@ -1121,11 +1100,11 @@ input[type="color"] {
 }
 
 .navbar__dark-mode-icon {
-  @apply cursor-pointer text-customgreys-dirtyGrey w-5 h-5 sm:w-6 sm:h-6 hover:text-white-50;
+  @apply cursor-pointer text-customgreys-dirtyGrey w-5 h-5 sm:w-6 sm:h-6 hover:text-customgreys-darkGrey;
 }
 
 .navbar__sidebar-trigger {
-  @apply text-customgreys-dirtyGrey hover:text-white-50 transition-colors;
+  @apply text-customgreys-dirtyGrey hover:text-customgreys-darkGrey transition-colors;
 }
 
 /* Toolbar */
@@ -1134,11 +1113,11 @@ input[type="color"] {
 }
 
 .toolbar__search {
-  @apply w-full px-5 h-12 bg-customgreys-primarybg placeholder-customgreys-dirtyGrey text-customgreys-dirtyGrey border-none rounded-md focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring;
+  @apply w-full px-5 h-12 bg-customgreys-secondarybg placeholder-customgreys-dirtyGrey text-customgreys-darkGrey border-none rounded-md focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring;
 }
 
 .toolbar__select {
-  @apply h-12 w-[180px] bg-customgreys-primarybg text-customgreys-dirtyGrey border-none;
+  @apply h-12 w-[180px] bg-customgreys-secondarybg text-customgreys-darkGrey border-none;
 }
 
 .toolbar__select-item {
@@ -1232,7 +1211,7 @@ input[type="color"] {
 }
 
 .nondashboard-navbar__notification-indicator {
-  @apply absolute top-0 right-0 bg-blue-500 h-1.5 sm:h-2 w-1.5 sm:w-2 rounded-full;
+  @apply absolute top-0 right-0 bg-primary-600 h-1.5 sm:h-2 w-1.5 sm:w-2 rounded-full;
 }
 
 .nondashboard-navbar__notification-icon {
@@ -1244,7 +1223,7 @@ input[type="color"] {
 }
 
 .nondashboard-navbar__auth-button--signup {
-  @apply bg-indigo-600 px-3 sm:px-4 py-1.5 sm:py-2 rounded-md hover:bg-primary-600 hover:text-customgreys-primarybg text-sm sm:text-base;
+  @apply bg-primary-700 px-3 sm:px-4 py-1.5 sm:py-2 rounded-md hover:bg-primary-600 hover:text-customgreys-primarybg text-sm sm:text-base;
 }
 
 /* Add these classes for group hover effects */
@@ -1319,7 +1298,7 @@ input[type="color"] {
 }
 
 .navbar__notification-indicator {
-  @apply absolute top-0 right-0 bg-blue-500 h-1.5 sm:h-2 w-1.5 sm:w-2 rounded-full;
+  @apply absolute top-0 right-0 bg-primary-600 h-1.5 sm:h-2 w-1.5 sm:w-2 rounded-full;
 }
 
 .navbar__notification-icon {
@@ -1332,7 +1311,7 @@ input[type="color"] {
 
 /* Dark Mode Button */
 .dark-mode-button {
-  @apply cursor-pointer text-customgreys-dirtyGrey w-5 h-5 sm:w-6 sm:h-6 hover:text-white-50;
+  @apply cursor-pointer text-customgreys-dirtyGrey w-5 h-5 sm:w-6 sm:h-6 hover:text-customgreys-darkGrey;
 }
 
 /* Course Card Search Additional Classes */
@@ -1366,7 +1345,7 @@ input[type="color"] {
 
 /* Additional Navbar Classes */
 .navbar__sidebar-trigger {
-  @apply text-customgreys-dirtyGrey hover:text-white-50 transition-colors;
+  @apply text-customgreys-dirtyGrey hover:text-customgreys-darkGrey transition-colors;
 }
 
 /* Add Chapter Button */
@@ -1412,11 +1391,11 @@ input[type="color"] {
 }
 
 .app-sidebar__nav-item {
-  @apply group-data-[collapsible=icon]:flex group-data-[collapsible=icon]:justify-center group-data-[collapsible=icon]:py-4 hover:bg-customgreys-secondarybg;
+  @apply group-data-[collapsible=icon]:flex group-data-[collapsible=icon]:justify-center group-data-[collapsible=icon]:py-4 hover:bg-customgreys-darkerGrey;
 }
 
 .app-sidebar__nav-button {
-  @apply gap-4 p-8 hover:bg-customgreys-secondarybg group-data-[collapsible=icon]:flex group-data-[collapsible=icon]:justify-center;
+  @apply gap-4 p-8 hover:bg-customgreys-darkerGrey group-data-[collapsible=icon]:flex group-data-[collapsible=icon]:justify-center;
 }
 
 .app-sidebar__nav-link {
@@ -1507,7 +1486,7 @@ input[type="color"] {
 }
 
 .dashboard-navbar__search-input {
-  @apply bg-customgreys-primarybg pl-10 sm:pl-14 pr-6 sm:pr-20 py-3 sm:py-4 rounded-xl text-customgreys-dirtyGrey hover:text-white-50 hover:bg-customgreys-darkerGrey transition-all duration-300 text-sm sm:text-base;
+  @apply bg-customgreys-secondarybg pl-10 sm:pl-14 pr-6 sm:pr-20 py-3 sm:py-4 rounded-xl text-customgreys-dirtyGrey hover:text-white-50 hover:bg-customgreys-darkerGrey transition-all duration-300 text-sm sm:text-base;
 }
 
 .dashboard-navbar__search-icon {
@@ -1523,9 +1502,9 @@ input[type="color"] {
 }
 
 .dashboard-navbar__dark-mode-icon {
-  @apply cursor-pointer text-customgreys-dirtyGrey w-5 h-5 sm:w-6 sm:h-6 hover:text-white-50;
+  @apply cursor-pointer text-customgreys-dirtyGrey w-5 h-5 sm:w-6 sm:h-6 hover:text-customgreys-darkGrey;
 }
 
 .dashboard-navbar__sidebar-trigger {
-  @apply text-customgreys-dirtyGrey hover:text-white-50 transition-colors;
+  @apply text-customgreys-dirtyGrey hover:text-customgreys-darkGrey transition-colors;
 }
