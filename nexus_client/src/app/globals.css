@@ -224,7 +224,7 @@ input[type="color"] {
 }
 
 .completion__action {
-  @apply mt-2 flex justify-center bg-secondary-700 rounded-lg px-4 py-2 hover:bg-secondary-600 cursor-pointer;
+  @apply mt-2 flex justify-center bg-secondary-700 text-white-100 rounded-lg px-4 py-2 hover:bg-secondary-600 cursor-pointer;
 }
 
 /* Landing Page */
@@ -379,7 +379,7 @@ input[type="color"] {
 }
 
 .checkout-details__subtitle {
-  @apply mb-6 text-sm text-center text-gray-400 mx-auto;
+  @apply mb-6 text-sm text-center text-customgreys-dirtyGrey mx-auto;
 }
 
 .checkout-details__form {
@@ -399,7 +399,7 @@ input[type="color"] {
 }
 
 .checkout-details__divider-text {
-  @apply px-4 text-sm text-gray-400 whitespace-nowrap;
+  @apply px-4 text-sm text-customgreys-dirtyGrey whitespace-nowrap;
 }
 
 .checkout-details__auth {
@@ -436,7 +436,7 @@ input[type="color"] {
 }
 
 .payment__subtitle {
-  @apply text-sm text-gray-400;
+  @apply text-sm text-customgreys-dirtyGrey;
 }
 
 .payment__method {
@@ -448,11 +448,11 @@ input[type="color"] {
 }
 
 .payment__card-container {
-  @apply flex flex-col border-[2px] border-white-100/5 rounded-lg;
+  @apply flex flex-col border-[2px] border-customgreys-dirtyGrey/30 rounded-lg;
 }
 
 .payment__card-header {
-  @apply flex items-center gap-2 bg-white-50/5 py-2 px-2;
+  @apply flex items-center gap-2 bg-customgreys-primarybg py-2 px-2;
 }
 
 .payment__card-element {
