@@ -83,8 +83,13 @@ input[type="color"] {
 }
 
 /* Filepond */
+.filepond--root {
+  @apply font-sans !text-customgreys-darkGrey;
+}
+
 .filepond--panel-root {
-  @apply !bg-customgreys-primarybg;
+  @apply !border !border-customgreys-dirtyGrey/30 !bg-customgreys-secondarybg;
+  border-radius: var(--radius);
 }
 
 .filepond--drop-label.filepond--drop-label label {
@@ -92,10 +97,32 @@ input[type="color"] {
 }
 
 .filepond--drop-label {
-  @apply !text-white-50;
-  @apply cursor-pointer;
-  @apply hover:!bg-customgreys-darkerGrey;
-  @apply hover:!text-white-100;
+  @apply !text-customgreys-darkGrey;
+  @apply cursor-pointer transition-colors;
+  @apply hover:!bg-primary-50;
+}
+
+.filepond--label-action {
+  @apply !text-primary-600;
+  @apply hover:!text-primary-700;
+  text-decoration-color: theme("colors.primary.300");
+}
+
+.filepond--item-panel {
+  @apply !bg-customgreys-darkGrey;
+  border-radius: calc(var(--radius) - 4px);
+}
+
+.filepond--file-info-main,
+.filepond--file-info-sub,
+.filepond--file-status-main,
+.filepond--file-status-sub {
+  @apply !text-white-100;
+}
+
+.filepond--progress-indicator,
+.filepond--file-action-button {
+  @apply !text-primary-400;
 }
 
 /* Component Classes */
@@ -877,6 +904,14 @@ input[type="color"] {
 
 .chapter-modal__preview {
   @apply flex flex-col items-center space-x-2;
+}
+
+.chapter-modal__video-upload {
+  @apply space-y-2;
+}
+
+.chapter-modal__video-preview {
+  @apply my-2 text-sm text-customgreys-dirtyGrey;
 }
 
 .chapter-modal__toggle {
