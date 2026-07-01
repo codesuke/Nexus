@@ -46,8 +46,8 @@ const TeacherCourseCard = ({
               className={cn(
                 "font-semibold px-2 py-1 rounded",
                 course.status === "Published"
-                  ? "bg-green-500/20 text-green-400"
-                  : "bg-red-500/20 text-red-400"
+                  ? "bg-green-100 text-green-800"
+                  : "bg-red-100 text-red-800"
               )}
             >
               {course.status}
@@ -55,7 +55,7 @@ const TeacherCourseCard = ({
           </p>
           {course.enrollments && (
             <p className="ml-1 mt-1 inline-block text-secondary bg-secondary/10 text-sm font-normal">
-              <span className="font-bold text-white-100">
+              <span className="font-bold text-customgreys-darkGrey">
                 {course.enrollments.length}
               </span>{" "}
               Student{course.enrollments.length > 1 ? "s" : ""} Enrolled
