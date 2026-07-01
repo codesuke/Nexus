@@ -172,9 +172,9 @@ const CourseEditor = () => {
               </div>
             </div>
 
-            <div className="bg-customgreys-darkGrey mt-4 md:mt-0 p-4 rounded-lg basis-1/2">
+            <div className="bg-customgreys-primarybg mt-4 md:mt-0 p-4 rounded-lg basis-1/2">
               <div className="flex justify-between items-center mb-2">
-                <h2 className="text-2xl font-semibold text-secondary-foreground">
+                <h2 className="text-2xl font-semibold text-customgreys-darkGrey">
                   Sections
                 </h2>
 
@@ -187,8 +187,8 @@ const CourseEditor = () => {
                   }
                   className="border-none text-primary-700 group"
                 >
-                  <Plus className="mr-1 h-4 w-4 text-primary-700 group-hover:white-100" />
-                  <span className="text-primary-700 group-hover:white-100">
+                  <Plus className="mr-1 h-4 w-4 text-primary-700 group-hover:text-white-100" />
+                  <span className="text-primary-700 group-hover:text-white-100">
                     Add Section
                   </span>
                 </Button>
