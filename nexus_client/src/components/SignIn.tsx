@@ -2,7 +2,6 @@
 
 import { SignIn, useUser } from "@clerk/nextjs";
 import React from "react";
-import { dark } from "@clerk/themes";
 import { useSearchParams } from "next/navigation";
 
 const SignInComponent = () => {
@@ -30,23 +29,34 @@ const SignInComponent = () => {
   return (
     <SignIn
       appearance={{
-        baseTheme: dark,
+        variables: {
+          colorPrimary: "#d95a2b",
+          colorBackground: "#FFFFFF",
+          colorText: "#181511",
+          colorTextSecondary: "#8C8478",
+          colorInputBackground: "#F7F2EA",
+          colorInputText: "#181511",
+          borderRadius: "0.75rem",
+        },
         elements: {
           rootBox: "flex justify-center items-center py-5",
           cardBox: "shadow-none",
-          card: "bg-customgreys-secondarybg w-full shadow-none",
+          card: "bg-customgreys-secondarybg w-full shadow-none border border-customgreys-dirtyGrey/15 rounded-lg",
+          headerTitle: "font-serif text-customgreys-darkGrey",
+          headerSubtitle: "text-customgreys-dirtyGrey",
           footer: {
-            background: "#25262F",
+            background: "#FFFFFF",
             padding: "0rem 2.5rem",
             "& > div > div:nth-child(1)": {
-              background: "#25262F",
+              background: "#FFFFFF",
             },
           },
-          formFieldLabel: "text-white-50 font-normal",
+          formFieldLabel: "text-customgreys-darkGrey font-normal",
           formButtonPrimary:
-            "bg-primary-700 text-white-100 hover:bg-primary-600 !shadow-none",
-          formFieldInput: "bg-customgreys-primarybg text-white-50 !shadow-none",
-          footerActionLink: "text-primary-750 hover:text-primary-600",
+            "bg-primary-600 text-white-100 hover:bg-primary-700 !shadow-none",
+          formFieldInput:
+            "bg-customgreys-primarybg text-customgreys-darkGrey !shadow-none border border-customgreys-dirtyGrey/30",
+          footerActionLink: "text-primary-600 hover:text-primary-700",
         },
       }}
       signUpUrl={signUpUrl}
