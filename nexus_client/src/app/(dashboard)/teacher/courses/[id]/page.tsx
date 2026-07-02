@@ -126,7 +126,7 @@ const CourseEditor = () => {
           />
 
           <div className="flex justify-between md:flex-row flex-col gap-10 mt-5 font-dm-sans">
-            <div className="basis-1/2">
+            <div className="basis-1/2 dashboard-module">
               <div className="space-y-4">
                 <CustomFormField
                   name="courseTitle"

@@ -473,11 +473,11 @@ input[type="color"] {
 }
 
 .billing__container {
-  @apply space-y-6 bg-customgreys-secondarybg;
+  @apply dashboard-module space-y-6;
 }
 
 .billing__title {
-  @apply text-2xl font-semibold;
+  @apply text-2xl font-serif font-semibold;
 }
 
 .billing__filters {
@@ -485,7 +485,7 @@ input[type="color"] {
 }
 
 .billing__select {
-  @apply w-[180px] border-none bg-customgreys-primarybg;
+  @apply w-[180px] rounded-full border-none bg-customgreys-primarybg;
 }
 
 .billing__select-content {
@@ -543,7 +543,7 @@ input[type="color"] {
 
 /* Dashboard Layout */
 .dashboard {
-  @apply min-h-screen w-full bg-customgreys-primarybg flex;
+  @apply min-h-screen w-full bg-customgreys-primarybg flex flex-col;
 }
 
 .dashboard__content {
@@ -551,7 +551,7 @@ input[type="color"] {
 }
 
 .dashboard__main {
-  @apply flex-grow min-h-screen transition-all duration-500 ease-in-out overflow-y-auto bg-customgreys-secondarybg;
+  @apply flex-grow overflow-y-auto bg-customgreys-secondarybg;
 }
 
 .dashboard__main--not-course {
@@ -559,7 +559,12 @@ input[type="color"] {
 }
 
 .dashboard__body {
-  @apply px-8 py-4;
+  @apply px-6 md:px-10 py-8;
+}
+
+/* Dashboard Module - shared card wrapper for list/table/form sections */
+.dashboard-module {
+  @apply bg-customgreys-secondarybg rounded-2xl border border-customgreys-dirtyGrey/15 shadow-sm p-6 md:p-8;
 }
 
 /* Course Page */
@@ -1277,7 +1282,7 @@ input[type="color"] {
 
 /* Shared Notification Settings */
 .notification-settings {
-  @apply space-y-4;
+  @apply dashboard-module space-y-4 max-w-xl;
 }
 
 .notification-settings__form {
@@ -1399,59 +1404,6 @@ input[type="color"] {
   @apply text-primary-700;
 }
 
-/* AppSidebar */
-.app-sidebar__menu {
-  @apply mt-5 group-data-[collapsible=icon]:mt-7;
-}
-
-.app-sidebar__logo-container {
-  @apply flex justify-between items-center gap-5 pl-3 pr-1 h-10 w-full group-data-[collapsible=icon]:ml-1 group-data-[collapsible=icon]:w-10 group-data-[collapsible=icon]:px-0;
-}
-
-.app-sidebar__logo-wrapper {
-  @apply flex items-center gap-5;
-}
-
-.app-sidebar__logo {
-  @apply transition duration-200 group-data-[collapsible=icon]:group-hover:brightness-75 w-auto;
-}
-
-.app-sidebar__title {
-  @apply text-lg font-extrabold group-data-[collapsible=icon]:hidden;
-}
-
-.app-sidebar__collapse-icon {
-  @apply text-gray-400 w-5 h-5 group-data-[collapsible=icon]:hidden;
-}
-
-.app-sidebar__nav-menu {
-  @apply mt-7 gap-0;
-}
-
-.app-sidebar__nav-item {
-  @apply group-data-[collapsible=icon]:flex group-data-[collapsible=icon]:justify-center group-data-[collapsible=icon]:py-4 hover:bg-customgreys-darkerGrey;
-}
-
-.app-sidebar__nav-button {
-  @apply gap-4 p-8 hover:bg-customgreys-darkerGrey group-data-[collapsible=icon]:flex group-data-[collapsible=icon]:justify-center;
-}
-
-.app-sidebar__nav-link {
-  @apply relative flex items-center;
-}
-
-.app-sidebar__nav-text {
-  @apply font-medium text-md ml-4 group-data-[collapsible=icon]:hidden;
-}
-
-.app-sidebar__active-indicator {
-  @apply absolute right-0 top-0 h-full w-[4px] bg-primary-750;
-}
-
-.app-sidebar__signout {
-  @apply text-primary-700 pl-8;
-}
-
 /* NonDashboard Layout */
 .nondashboard-layout {
   @apply flex flex-col min-h-screen w-full;
@@ -1510,39 +1462,47 @@ input[type="color"] {
   @apply brightness-75;
 }
 
-/* Dashboard Navbar */
-.dashboard-navbar {
-  @apply w-full mb-6 px-4 sm:px-8 pt-7 z-10;
+/* Dashboard Nav - floating modular nav bar, replaces the old fixed sidebar */
+.dashboard-nav {
+  @apply flex flex-wrap items-center justify-between gap-4 mx-4 sm:mx-8 mt-6 mb-2 px-5 py-3 rounded-2xl bg-customgreys-secondarybg border border-customgreys-dirtyGrey/15 shadow-sm sticky top-4 z-20;
 }
 
-.dashboard-navbar__container {
-  @apply flex justify-between items-center w-full my-3;
+.dashboard-nav__brand-group {
+  @apply flex items-center gap-6 flex-wrap;
 }
 
-.dashboard-navbar__search {
-  @apply flex justify-between items-center gap-2 sm:gap-5;
+.dashboard-nav__brand {
+  @apply font-serif text-xl font-bold text-customgreys-darkGrey shrink-0;
 }
 
-.dashboard-navbar__search-input {
-  @apply bg-customgreys-secondarybg pl-10 sm:pl-14 pr-6 sm:pr-20 py-3 sm:py-4 rounded-xl text-customgreys-dirtyGrey hover:text-white-50 hover:bg-customgreys-darkerGrey transition-all duration-300 text-sm sm:text-base;
+.dashboard-nav__links {
+  @apply flex items-center gap-1 overflow-x-auto;
 }
 
-.dashboard-navbar__search-icon {
-  @apply absolute left-3 sm:left-5 top-1/2 transform -translate-y-1/2 text-customgreys-dirtyGrey transition-all duration-300;
+.dashboard-nav__link {
+  @apply flex items-center gap-2 px-3 py-2 rounded-full text-sm font-medium text-customgreys-dirtyGrey hover:bg-customgreys-primarybg hover:text-customgreys-darkGrey transition-colors whitespace-nowrap;
 }
 
-.dashboard-navbar__actions {
-  @apply flex items-center gap-3 sm:gap-6;
+.dashboard-nav__link--active {
+  @apply bg-primary-600/10 text-primary-700 hover:bg-primary-600/10 hover:text-primary-700;
 }
 
-.dashboard-navbar__dark-mode-button {
-  @apply rounded-full flex items-center justify-center;
+.dashboard-nav__actions {
+  @apply flex items-center gap-2 sm:gap-4;
 }
 
-.dashboard-navbar__dark-mode-icon {
-  @apply cursor-pointer text-customgreys-dirtyGrey w-5 h-5 sm:w-6 sm:h-6 hover:text-customgreys-darkGrey;
+.dashboard-nav__search {
+  @apply flex items-center gap-2 bg-customgreys-primarybg px-4 py-2 rounded-full text-customgreys-dirtyGrey hover:text-white-50 hover:bg-customgreys-darkerGrey transition-all duration-300 text-sm;
 }
 
-.dashboard-navbar__sidebar-trigger {
-  @apply text-customgreys-dirtyGrey hover:text-customgreys-darkGrey transition-colors;
+.dashboard-nav__search-icon {
+  @apply shrink-0;
+}
+
+.dashboard-nav__icon-button {
+  @apply relative rounded-full w-9 h-9 flex items-center justify-center text-customgreys-dirtyGrey hover:bg-customgreys-primarybg hover:text-customgreys-darkGrey transition-colors;
+}
+
+.dashboard-nav__notification-indicator {
+  @apply absolute top-0 right-0 bg-primary-600 text-white-100 text-[10px] leading-none rounded-full w-4 h-4 flex items-center justify-center;
 }

@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useRef } from "react";
 import {
   ChevronDown,
   ChevronUp,
@@ -8,13 +8,11 @@ import {
 } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { cn } from "@/lib/utils";
-import { useSidebar } from "@/components/ui/sidebar";
 import Loading from "@/components/Loading";
 import { useCourseProgressData } from "@/hooks/useCourseProgressData";
 
 const ChaptersSidebar = () => {
   const router = useRouter();
-  const { setOpen } = useSidebar();
   const [expandedSections, setExpandedSections] = useState<string[]>([]);
 
   const {
@@ -28,10 +26,6 @@ const ChaptersSidebar = () => {
   } = useCourseProgressData();
 
   const sidebarRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    setOpen(false);
-  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   if (isLoading) return <Loading />;
   if (!user) return <div>Please sign in to view course progress.</div>;

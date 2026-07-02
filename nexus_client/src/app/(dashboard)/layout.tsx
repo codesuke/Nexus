@@ -1,8 +1,6 @@
 "use client";
-import AppSidebar from "@/components/AppSidebar";
 import Loading from "@/components/Loading";
 import Navbar from "@/components/Navbar";
-import { SidebarProvider } from "@/components/ui/sidebar";
 import { cn } from "@/lib/utils";
 import { useUser } from "@clerk/nextjs";
 import { usePathname } from "next/navigation";
@@ -34,23 +32,19 @@ export default function DashboardLayout({
   if (!user) return <div>Please sign in to access this page.</div>;
 
   return (
-    <SidebarProvider>
-      <div className="dashboard">
-        <AppSidebar />
-        <div className="dashboard__content">
-          {courseId && <ChaptersSidebar />}
-          <div
-            className={cn(
-              "dashboard__main",
-              isCoursePage && "dashboard__main--not-course"
-            )}
-            style={{ height: "100vh" }}
-          >
-            <Navbar isCoursePage={isCoursePage} />
-            <main className="dashboard__body">{children}</main>
-          </div>
+    <div className="dashboard">
+      <Navbar isCoursePage={isCoursePage} />
+      <div className="dashboard__content">
+        {courseId && <ChaptersSidebar />}
+        <div
+          className={cn(
+            "dashboard__main",
+            isCoursePage && "dashboard__main--not-course"
+          )}
+        >
+          <main className="dashboard__body">{children}</main>
         </div>
       </div>
-    </SidebarProvider>
+    </div>
   );
 }
