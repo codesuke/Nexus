@@ -65,24 +65,48 @@ const Landing = () => {
       className="landing"
     >
       <motion.div
-        initial={{ y: 20, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: 0.5 }}
+        initial={{ y: 30, opacity: 0, scale: 0.98 }}
+        animate={{ y: 0, opacity: 1, scale: 1 }}
+        transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
         className="landing__hero"
       >
-        <div className="landing__hero-content">
-          <h1 className="landing__title">Courses</h1>
-          <p className="landing__description">
+        <motion.div
+          initial="hidden"
+          animate="visible"
+          variants={{
+            hidden: {},
+            visible: { transition: { staggerChildren: 0.12, delayChildren: 0.15 } },
+          }}
+          className="landing__hero-content"
+        >
+          <motion.h1
+            variants={{ hidden: { y: 16, opacity: 0 }, visible: { y: 0, opacity: 1 } }}
+            transition={{ duration: 0.5 }}
+            className="landing__title"
+          >
+            Courses
+          </motion.h1>
+          <motion.p
+            variants={{ hidden: { y: 16, opacity: 0 }, visible: { y: 0, opacity: 1 } }}
+            transition={{ duration: 0.5 }}
+            className="landing__description"
+          >
             This is the list of the courses you can enroll in.
             <br />
             Courses when you need them and want them.
-          </p>
-          <div className="landing__cta">
+          </motion.p>
+          <motion.div
+            variants={{ hidden: { y: 16, opacity: 0 }, visible: { y: 0, opacity: 1 } }}
+            transition={{ duration: 0.5 }}
+            whileHover={{ scale: 1.04 }}
+            whileTap={{ scale: 0.97 }}
+            className="landing__cta"
+          >
             <Link href="/search" scroll={false}>
               <div className="landing__cta-button">Search for Courses</div>
             </Link>
-          </div>
-        </div>
+          </motion.div>
+        </motion.div>
         <div className="landing__hero-images">
           {["/hero1.jpg", "/hero2.jpg", "/hero3.jpg"].map((src, index) => (
             <Image

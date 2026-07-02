@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Check } from "lucide-react";
 import Link from "next/link";
 import React from "react";
+import { motion } from "framer-motion";
 import { getGuestUser } from "@/lib/guestUser";
 import { useUser } from "@clerk/nextjs";
 
@@ -11,17 +12,34 @@ const CompletionPage = () => {
   const { user: clerkUser } = useUser();
   const guestUser = getGuestUser();
   const isGuest = !!guestUser;
-  
+
   return (
     <div className="completion">
       <div className="completion__content">
-        <div className="completion__icon">
+        <motion.div
+          initial={{ scale: 0, rotate: -45, opacity: 0 }}
+          animate={{ scale: 1, rotate: 0, opacity: 1 }}
+          transition={{ type: "spring", stiffness: 260, damping: 18, delay: 0.1 }}
+          className="completion__icon"
+        >
           <Check className="w-16 h-16 text-white-100" />
-        </div>
-        <h1 className="completion__title">COMPLETED</h1>
-        <p className="completion__message">
+        </motion.div>
+        <motion.h1
+          initial={{ y: 12, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ duration: 0.4, delay: 0.4 }}
+          className="completion__title"
+        >
+          COMPLETED
+        </motion.h1>
+        <motion.p
+          initial={{ y: 12, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ duration: 0.4, delay: 0.5 }}
+          className="completion__message"
+        >
           🎉 You have made a course purchase successfully! 🎉
-        </p>
+        </motion.p>
         {isGuest && (
           <div className="mt-4 p-4 bg-yellow-500/10 border border-yellow-500/30 rounded-lg">
             <p className="text-sm text-yellow-800">

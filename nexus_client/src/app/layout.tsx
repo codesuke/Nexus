@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { DM_Sans, Fraunces } from "next/font/google";
+import { DM_Sans, Space_Grotesk } from "next/font/google";
 import "./globals.css";
 import Providers from "./providers";
 import { ClerkProvider } from "@clerk/nextjs";
@@ -12,10 +12,10 @@ const dmSans = DM_Sans({
   variable: "--font-dm-sans",
 });
 
-const fraunces = Fraunces({
+const spaceGrotesk = Space_Grotesk({
   subsets: ["latin"],
   display: "swap",
-  variable: "--font-fraunces",
+  variable: "--font-display",
 });
 
 export const viewport: Viewport = {
@@ -59,7 +59,7 @@ export default function RootLayout({
   return (
     <ClerkProvider>
       <html lang="en">
-        <body className={`${dmSans.className} ${fraunces.variable}`}>
+        <body className={`${dmSans.className} ${spaceGrotesk.variable}`}>
           <Providers>
             <Suspense fallback={null}>
               <div className="root-layout">{children}</div>

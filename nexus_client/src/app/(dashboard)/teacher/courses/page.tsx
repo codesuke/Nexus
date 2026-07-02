@@ -13,6 +13,16 @@ import {
 import { useUser } from "@clerk/nextjs";
 import { useRouter } from "next/navigation";
 import React, { useMemo, useState } from "react";
+import { motion } from "framer-motion";
+
+const gridVariants = {
+  hidden: {},
+  visible: { transition: { staggerChildren: 0.08, delayChildren: 0.1 } },
+};
+const cardVariants = {
+  hidden: { y: 30, opacity: 0 },
+  visible: { y: 0, opacity: 1 },
+};
 
 const Courses = () => {
   const router = useRouter();
@@ -87,17 +97,23 @@ const Courses = () => {
         onSearch={setSearchTerm}
         onCategoryChange={setSelectedCategory}
       />
-      <div className="teacher-courses__grid">
+      <motion.div
+        initial="hidden"
+        animate="visible"
+        variants={gridVariants}
+        className="teacher-courses__grid"
+      >
         {filteredCourses.map((course) => (
-          <TeacherCourseCard
-            key={course.courseId}
-            course={course}
-            onEdit={handleEdit}
-            onDelete={handleDelete}
-            isOwner={course.teacherId === user?.id}
-          />
+          <motion.div key={course.courseId} variants={cardVariants} transition={{ duration: 0.4 }}>
+            <TeacherCourseCard
+              course={course}
+              onEdit={handleEdit}
+              onDelete={handleDelete}
+              isOwner={course.teacherId === user?.id}
+            />
+          </motion.div>
         ))}
-      </div>
+      </motion.div>
     </div>
   );
 };

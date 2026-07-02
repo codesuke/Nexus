@@ -134,7 +134,7 @@ const config = {
       },
       fontFamily: {
         sans: ["var(--font-dm-sans)"],
-        serif: ["var(--font-fraunces)"],
+        display: ["var(--font-display)"],
       },
       fontSize: {
         xs: ["0.75rem", { lineHeight: "1rem" }],

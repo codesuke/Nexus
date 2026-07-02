@@ -62,18 +62,29 @@ const Search = () => {
       <h2 className="search__subtitle">{courses.length} courses avaiable</h2>
       <div className="search__content">
         <motion.div
-          initial={{ y: 40, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          transition={{ duration: 0.5, delay: 0.2 }}
+          initial="hidden"
+          animate="visible"
+          variants={{
+            hidden: {},
+            visible: { transition: { staggerChildren: 0.08, delayChildren: 0.15 } },
+          }}
           className="search__courses-grid"
         >
           {courses.map((course) => (
-            <CourseCardSearch
+            <motion.div
               key={course.courseId}
-              course={course}
-              isSelected={selectedCourse?.courseId === course.courseId}
-              onClick={() => handleCourseSelect(course)}
-            />
+              variants={{
+                hidden: { y: 30, opacity: 0 },
+                visible: { y: 0, opacity: 1 },
+              }}
+              transition={{ duration: 0.4 }}
+            >
+              <CourseCardSearch
+                course={course}
+                isSelected={selectedCourse?.courseId === course.courseId}
+                onClick={() => handleCourseSelect(course)}
+              />
+            </motion.div>
           ))}
         </motion.div>
 

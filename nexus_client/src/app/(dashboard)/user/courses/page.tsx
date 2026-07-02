@@ -8,6 +8,16 @@ import Header from "@/components/Header";
 import { useUser } from "@clerk/nextjs";
 import { useState, useMemo } from "react";
 import Loading from "@/components/Loading";
+import { motion } from "framer-motion";
+
+const gridVariants = {
+  hidden: {},
+  visible: { transition: { staggerChildren: 0.08, delayChildren: 0.1 } },
+};
+const cardVariants = {
+  hidden: { y: 30, opacity: 0 },
+  visible: { y: 0, opacity: 1 },
+};
 
 const Courses = () => {
   const router = useRouter();
@@ -68,15 +78,18 @@ const Courses = () => {
         onSearch={setSearchTerm}
         onCategoryChange={setSelectedCategory}
       />
-      <div className="user-courses__grid">
+      <motion.div
+        initial="hidden"
+        animate="visible"
+        variants={gridVariants}
+        className="user-courses__grid"
+      >
         {filteredCourses.map((course) => (
-          <CourseCard
-            key={course.courseId}
-            course={course}
-            onGoToCourse={handleGoToCourse}
-          />
+          <motion.div key={course.courseId} variants={cardVariants} transition={{ duration: 0.4 }}>
+            <CourseCard course={course} onGoToCourse={handleGoToCourse} />
+          </motion.div>
         ))}
-      </div>
+      </motion.div>
     </div>
   );
 };
