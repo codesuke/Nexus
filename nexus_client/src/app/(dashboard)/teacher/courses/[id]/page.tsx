@@ -108,10 +108,10 @@ const CourseEditor = () => {
                   className="flex items-center space-x-2"
                   labelClassName={`text-sm font-medium ${
                     methods.watch("courseStatus")
-                      ? "text-green-500"
-                      : "text-yellow-500"
+                      ? "text-green-700"
+                      : "text-yellow-700"
                   }`}
-                  inputClassName="data-[state=checked]:bg-green-500"
+                  inputClassName="data-[state=checked]:bg-green-600"
                 />
                 <Button
                   type="submit"

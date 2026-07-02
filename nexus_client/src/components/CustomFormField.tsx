@@ -86,7 +86,7 @@ export const CustomFormField: React.FC<FormFieldProps> = ({
             placeholder={placeholder}
             {...field}
             rows={3}
-            className={`border-none bg-customgreys-darkGrey p-4 ${inputClassName}`}
+            className={`border-none bg-customgreys-primarybg p-4 ${inputClassName}`}
           />
         );
       case "select":
@@ -155,7 +155,7 @@ export const CustomFormField: React.FC<FormFieldProps> = ({
             type="number"
             placeholder={placeholder}
             {...field}
-            className={`border-none bg-customgreys-darkGrey p-4 ${inputClassName}`}
+            className={`border-none bg-customgreys-primarybg p-4 ${inputClassName}`}
             disabled={disabled}
           />
         );
@@ -250,7 +250,7 @@ const MultiInputField: React.FC<MultiInputFieldProps> = ({
                 <Input
                   {...field}
                   placeholder={placeholder}
-                  className={`flex-1 border-none bg-customgreys-darkGrey p-4 ${inputClassName}`}
+                  className={`flex-1 border-none bg-customgreys-primarybg p-4 ${inputClassName}`}
                 />
               </FormControl>
             )}
