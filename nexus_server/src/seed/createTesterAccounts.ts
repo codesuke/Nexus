@@ -5,6 +5,7 @@ import Course from "../models/courseModel.mongoose";
 import Transaction from "../models/transactionModel.mongoose";
 import UserCourseProgress from "../models/userCourseProgressModel.mongoose";
 import { v4 as uuidv4 } from "uuid";
+import { TEACHER_EMAIL, STUDENT_EMAIL } from "./testerAccounts.constants";
 
 dotenv.config();
 
@@ -12,8 +13,6 @@ const secretKey = process.env.CLERK_SECRET_KEY;
 if (!secretKey) throw new Error("CLERK_SECRET_KEY is not defined");
 const clerkClient = createClerkClient({ secretKey });
 
-const TEACHER_EMAIL = "nexus.tester.teacher+clerk_test@example.com";
-const STUDENT_EMAIL = "nexus.tester.student+clerk_test@example.com";
 const testerPasswordEnv = process.env.TESTER_PASSWORD;
 if (!testerPasswordEnv) {
   throw new Error(
@@ -25,6 +24,12 @@ const TESTER_PASSWORD: string = testerPasswordEnv;
 async function connectDB() {
   const mongoURI = process.env.MONGODB_URI;
   if (!mongoURI) throw new Error("MONGODB_URI is not defined");
+  if (process.env.ALLOW_TESTER_SEED !== "true") {
+    throw new Error(
+      "Refusing to run: this script reassigns course ownership, which is destructive against a real database. " +
+        "Set ALLOW_TESTER_SEED=true in .env only when MONGODB_URI points at a local/throwaway database."
+    );
+  }
   await mongoose.connect(mongoURI);
   console.log("MongoDB connected");
 }
@@ -41,7 +46,6 @@ async function findOrCreateClerkUser(emailAddress: string, firstName: string, la
     password: TESTER_PASSWORD,
     firstName,
     lastName,
-    skipPasswordChecks: true,
     publicMetadata: { userType },
   });
   console.log(`Created Clerk user ${emailAddress} -> ${user.id}`);
@@ -102,7 +106,7 @@ async function main() {
   console.log("\nDone.");
   console.log(`Teacher login: ${TEACHER_EMAIL}`);
   console.log(`Student login: ${STUDENT_EMAIL}`);
-  console.log(`Password (both): ${TESTER_PASSWORD}`);
+  console.log("Password: see TESTER_PASSWORD in .env");
 
   await mongoose.connection.close();
 }
