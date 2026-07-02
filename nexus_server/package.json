@@ -22,6 +22,8 @@
     "setup-accounts-old": "ts-node src/seed/setupSpecificAccounts.ts",
     "assign-accounts": "ts-node src/seed/assignToSpecificAccounts.ts",
     "check-nightraven": "ts-node src/seed/checkNightraven.ts",
+    "create-tester-accounts": "ts-node src/seed/createTesterAccounts.ts",
+    "delete-tester-accounts": "ts-node src/seed/deleteTesterAccounts.ts",
     "docker:build": "docker build -t nexus-backend .",
     "docker:up": "docker-compose up -d",
     "docker:down": "docker-compose down",
