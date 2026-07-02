@@ -1066,7 +1066,7 @@ input[type="color"] {
 }
 
 .course-preview__title {
-  @apply text-white-50 text-3xl font-bold mb-2;
+  @apply text-customgreys-darkGrey text-3xl font-bold mb-2;
 }
 
 /* Custom Modal */
@@ -1092,7 +1092,7 @@ input[type="color"] {
 }
 
 .footer__link {
-  @apply text-primary-500 mx-2;
+  @apply text-primary-700 mx-2;
 }
 
 /* Loading */
