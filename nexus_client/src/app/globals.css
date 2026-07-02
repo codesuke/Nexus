@@ -797,7 +797,7 @@ input[type="color"] {
 }
 
 .chapters-sidebar__chapter-number--current {
-  @apply bg-secondary-700 text-gray-800;
+  @apply bg-primary-600 text-white-100 border-primary-600;
 }
 
 .chapters-sidebar__chapter-title {
@@ -809,7 +809,7 @@ input[type="color"] {
 }
 
 .chapters-sidebar__chapter-title--current {
-  @apply text-secondary-700;
+  @apply text-primary-500 font-medium;
 }
 
 .chapters-sidebar__text-icon {
